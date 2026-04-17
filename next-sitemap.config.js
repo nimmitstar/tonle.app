@@ -14,6 +14,7 @@ module.exports = {
     else if (path.startsWith('/crypto-profit-calculator') || path.startsWith('/loan-calculator')) { priority = 0.9; changefreq = 'weekly' }
     else if (path.startsWith('/dca-calculator') || path.startsWith('/currency-converter') || path.startsWith('/compound-interest-calculator')) { priority = 0.8; changefreq = 'weekly' }
     else if (path.startsWith('/password-generator') || path.startsWith('/json-formatter')) { priority = 0.8; changefreq = 'weekly' }
+    else if (path.startsWith('/vs/')) { priority = 0.6; changefreq = 'monthly' }
 
     return {
       loc: path,
