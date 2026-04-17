@@ -1,4 +1,5 @@
 import { ToolCard } from "@/components/tool-card"
+import { ToolList } from "@/components/tool-list"
 import { BetweenToolsAd } from "@/components/adsense"
 import Link from "next/link"
 
@@ -66,6 +67,7 @@ import {
   Tag,
 } from "lucide-react"
 
+// Tools with icon components for server components (ToolCard)
 const tools = [
   // Finance & Crypto
   {
@@ -320,13 +322,50 @@ const tools = [
   },
 ]
 
+// Serializable tools for client component (iconName as string only)
+const toolsForList = [
+  { title: "Crypto Profit Calculator", description: "Calculate your cryptocurrency profit or loss with ROI percentage based on buy and sell prices.", href: "/crypto-profit-calculator", iconName: "TrendingUp", category: "Finance" },
+  { title: "DCA Calculator", description: "Plan your Dollar Cost Averaging strategy with investment amount, frequency, and duration.", href: "/dca-calculator", iconName: "Repeat", category: "Finance" },
+  { title: "Loan Calculator", description: "Calculate monthly payments, total interest, and view amortization schedule for any loan.", href: "/loan-calculator", iconName: "Landmark", category: "Finance" },
+  { title: "Compound Interest Calculator", description: "See how your money grows over time with compound interest at different frequencies.", href: "/compound-interest-calculator", iconName: "Percent", category: "Finance" },
+  { title: "Currency Converter", description: "Convert between 150+ world currencies with real-time exchange rates.", href: "/currency-converter", iconName: "DollarSign", category: "Finance" },
+  { title: "Stock ROI Calculator", description: "Calculate stock investment returns with total ROI, annualized return, and CAGR metrics.", href: "/stock-roi-calculator", iconName: "BarChart3", category: "Finance" },
+  { title: "Inflation Calculator", description: "See how inflation affects purchasing power using US CPI historical data.", href: "/inflation-calculator", iconName: "Banknote", category: "Finance" },
+  { title: "Tip Calculator", description: "Calculate tip amount and split the bill between multiple people with quick presets.", href: "/tip-calculator", iconName: "Coffee", category: "Finance" },
+  { title: "Margin Calculator", description: "Calculate gross margin, markup, and profit. Find selling price from target margin.", href: "/margin-calculator", iconName: "Percent", category: "Finance" },
+  { title: "SIP Calculator", description: "Calculate returns on your Systematic Investment Plan with visual breakdown.", href: "/sip-calculator", iconName: "TrendingUp", category: "Finance" },
+  { title: "Discount Calculator", description: "Calculate final price and savings after applying single or multiple percentage discounts.", href: "/discount-calculator", iconName: "Tag", category: "Finance" },
+  { title: "Word Counter", description: "Count words, characters, sentences, paragraphs, and estimate reading time.", href: "/word-counter", iconName: "FileText", category: "Word Tools" },
+  { title: "Character Counter", description: "Count characters with and without spaces, plus letter frequency analysis.", href: "/character-counter", iconName: "Type", category: "Word Tools" },
+  { title: "Case Converter", description: "Convert text to uppercase, lowercase, title case, sentence case, or toggle case.", href: "/case-converter", iconName: "Heading1", category: "Word Tools" },
+  { title: "Lorem Ipsum Generator", description: "Generate placeholder lorem ipsum text for your designs and mockups.", href: "/lorem-ipsum-generator", iconName: "AlignLeft", category: "Word Tools" },
+  { title: "Password Generator", description: "Create secure random passwords with customizable options and strength meter.", href: "/password-generator", iconName: "Lock", category: "Word Tools" },
+  { title: "Text to Speech", description: "Convert text to spoken words using browser voices with speed and pitch controls.", href: "/text-to-speech", iconName: "Volume2", category: "Word Tools" },
+  { title: "JSON Formatter", description: "Format, validate, and beautify JSON with syntax highlighting.", href: "/json-formatter", iconName: "Code", category: "Developer" },
+  { title: "Base64 Encoder", description: "Encode and decode text to and from Base64 format instantly.", href: "/base64-encoder", iconName: "Binary", category: "Developer" },
+  { title: "URL Encoder", description: "Encode and decode URLs and query strings safely.", href: "/url-encoder", iconName: "Globe", category: "Developer" },
+  { title: "Color Converter", description: "Convert between HEX, RGB, and HSL color formats with live preview.", href: "/color-converter", iconName: "Palette", category: "Developer" },
+  { title: "QR Code Generator", description: "Generate QR codes for URLs, text, and contact information.", href: "/qr-code-generator", iconName: "QrCode", category: "Developer" },
+  { title: "Number Base Converter", description: "Convert numbers between decimal, binary, octal, and hexadecimal formats instantly.", href: "/number-base-converter", iconName: "Hash", category: "Developer" },
+  { title: "PDF Merge", description: "Merge multiple PDF files into one. Rearrange pages and download the merged PDF.", href: "/pdf-merge", iconName: "File", category: "Developer" },
+  { title: "QR Code Reader", description: "Scan QR codes using your camera or upload an image. Instantly decode URLs and text.", href: "/qr-code-reader", iconName: "ScanLine", category: "Developer" },
+  { title: "Age Calculator", description: "Calculate your exact age in years, months, and days. Get a countdown to your next birthday.", href: "/age-calculator", iconName: "Calendar", category: "Health" },
+  { title: "BMI Calculator", description: "Calculate your Body Mass Index (BMI) and check your health category with visual scale.", href: "/bmi-calculator", iconName: "Cake", category: "Health" },
+  { title: "Sleep Calculator", description: "Find optimal sleep and wake times based on 90-minute sleep cycles.", href: "/sleep-calculator", iconName: "Moon", category: "Health" },
+  { title: "Percentage Calculator", description: "Calculate percentages: X% of Y, what % X is of Y, and percentage change between values.", href: "/percentage-calculator", iconName: "Calculator", category: "Math" },
+  { title: "Time Zone Converter", description: "Convert time between any two time zones worldwide. Perfect for scheduling across regions.", href: "/timezone-converter", iconName: "Clock", category: "Utility" },
+  { title: "Unit Converter", description: "Convert length, weight, temperature, speed, area, and volume between metric and imperial units.", href: "/unit-converter", iconName: "Ruler", category: "Utility" },
+  { title: "Countdown Timer", description: "Count down to any date and time. Perfect for events, deadlines, and reminders.", href: "/countdown-timer", iconName: "Timer", category: "Utility" },
+  { title: "Stopwatch", description: "Measure elapsed time with millisecond precision, start/stop/reset, and lap functionality.", href: "/stopwatch", iconName: "Hourglass", category: "Utility" },
+  { title: "Image Compressor", description: "Compress images with adjustable quality. Reduce file size while maintaining quality.", href: "/image-compressor", iconName: "ImageIcon", category: "Utility" },
+  { title: "Image Resizer", description: "Resize images to specific dimensions or by percentage. Maintain aspect ratio option available.", href: "/image-resizer", iconName: "ImageIcon", category: "Utility" },
+]
+
 const featuredTools = [
   tools[0], // Crypto Profit Calculator
   tools[2], // Loan Calculator
-  tools[8], // Password Generator
+  tools[17], // Password Generator
 ]
-
-const categories = ["Finance", "Word Tools", "Developer", "Health", "Math", "Utility"] as const
 
 const trustBadges = [
   { icon: CheckCircle2, label: "100% Free" },
@@ -341,7 +380,7 @@ export default function HomePage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }} />
 
-      {/* Hero Section */}
+      {/* Hero Section - Compact */}
       <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-sky-50/50 to-transparent dark:from-sky-950/30 dark:via-sky-950/10">
         {/* Animated background elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -350,46 +389,30 @@ export default function HomePage() {
           <div className="absolute bottom-0 left-1/2 w-[600px] h-[300px] bg-gradient-to-t from-sky-100/50 to-transparent dark:from-sky-900/20 rounded-t-full blur-2xl" />
         </div>
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
           <div className="text-center max-w-3xl mx-auto">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-sm font-medium mb-6 animate-fade-in">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-sm font-medium mb-5 animate-fade-in">
               <Zap className="w-4 h-4" />
               35 free tools, no signup required
             </div>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-6 animate-fade-in">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-4 animate-fade-in">
               Your Daily Tools,
               <br />
               <span className="gradient-text">Simplified & Free</span>
             </h1>
 
-            <p className="mt-6 text-xl md:text-2xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: "100ms" }}>
+            <p className="mt-4 text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "100ms" }}>
               Fast, private tools that work in your browser. No tracking, no limits, no catch.
             </p>
-
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "200ms" }}>
-              <Link
-                href="#tools"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl shadow-lg shadow-sky-500/30 hover:shadow-sky-500/50 transition-all hover:-translate-y-0.5"
-              >
-                Start Exploring
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold rounded-xl border border-zinc-200 dark:border-zinc-800 transition-all hover:-translate-y-0.5"
-              >
-                Learn More
-              </Link>
-            </div>
           </div>
 
           {/* Trust Bar */}
-          <div className="mt-16 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "300ms" }}>
-            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+          <div className="mt-10 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "200ms" }}>
+            <div className="flex flex-wrap items-center justify-center gap-5 md:gap-8">
               {trustBadges.map((badge) => (
                 <div key={badge.label} className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
-                  <badge.icon className="w-5 h-5 text-sky-500" />
+                  <badge.icon className="w-4 h-4 text-sky-500" />
                   <span className="text-sm font-medium">{badge.label}</span>
                 </div>
               ))}
@@ -399,9 +422,9 @@ export default function HomePage() {
       </section>
 
       {/* Featured Tools */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-100">
             Featured Tools
           </h2>
           <Link
@@ -419,29 +442,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* All Tools by Category */}
-      <section id="tools" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {categories.map((category, idx) => (
-          <div key={category}>
-            {idx > 0 && <BetweenToolsAd />}
-            <div className="mb-16">
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-1 h-8 bg-sky-500 rounded-full" />
-                <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-                  {category}
-                </h2>
-              </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
-                {tools
-                  .filter((tool) => tool.category === category)
-                  .map((tool) => (
-                    <ToolCard key={tool.href} {...tool} />
-                  ))}
-              </div>
-            </div>
-          </div>
-        ))}
-      </section>
+      <BetweenToolsAd />
+
+      {/* All Tools - Searchable List */}
+      <ToolList tools={toolsForList} />
 
       {/* SEO Content - Made more visual */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-zinc-200 dark:border-zinc-800">
