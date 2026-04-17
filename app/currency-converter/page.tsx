@@ -6,21 +6,42 @@ import { ToolPageLayout } from "@/components/tool-page-layout"
 import { AffiliateCard } from "@/components/affiliate-card"
 
 const currencies = [
-  { code: "USD", name: "US Dollar" },
-  { code: "EUR", name: "Euro" },
-  { code: "GBP", name: "British Pound" },
-  { code: "JPY", name: "Japanese Yen" },
-  { code: "AUD", name: "Australian Dollar" },
-  { code: "CAD", name: "Canadian Dollar" },
-  { code: "CHF", name: "Swiss Franc" },
-  { code: "CNY", name: "Chinese Yuan" },
-  { code: "HKD", name: "Hong Kong Dollar" },
-  { code: "SGD", name: "Singapore Dollar" },
-  { code: "INR", name: "Indian Rupee" },
-  { code: "KRW", name: "South Korean Won" },
-  { code: "BTC", name: "Bitcoin" },
-  { code: "ETH", name: "Ethereum" },
+  { code: "USD", name: "US Dollar", type: "fiat" },
+  { code: "EUR", name: "Euro", type: "fiat" },
+  { code: "GBP", name: "British Pound", type: "fiat" },
+  { code: "JPY", name: "Japanese Yen", type: "fiat" },
+  { code: "AUD", name: "Australian Dollar", type: "fiat" },
+  { code: "CAD", name: "Canadian Dollar", type: "fiat" },
+  { code: "CHF", name: "Swiss Franc", type: "fiat" },
+  { code: "CNY", name: "Chinese Yuan", type: "fiat" },
+  { code: "HKD", name: "Hong Kong Dollar", type: "fiat" },
+  { code: "SGD", name: "Singapore Dollar", type: "fiat" },
+  { code: "INR", name: "Indian Rupee", type: "fiat" },
+  { code: "KRW", name: "South Korean Won", type: "fiat" },
+  { code: "THB", name: "Thai Baht", type: "fiat" },
+  { code: "VND", name: "Vietnamese Dong", type: "fiat" },
+  { code: "KHR", name: "Cambodian Riel", type: "fiat" },
+  { code: "MYR", name: "Malaysian Ringgit", type: "fiat" },
+  { code: "IDR", name: "Indonesian Rupiah", type: "fiat" },
+  { code: "PHP", name: "Philippine Peso", type: "fiat" },
+  { code: "BTC", name: "Bitcoin", type: "crypto" },
+  { code: "ETH", name: "Ethereum", type: "crypto" },
+  { code: "BNB", name: "BNB", type: "crypto" },
+  { code: "SOL", name: "Solana", type: "crypto" },
+  { code: "XRP", name: "Ripple", type: "crypto" },
+  { code: "ADA", name: "Cardano", type: "crypto" },
+  { code: "DOGE", name: "Dogecoin", type: "crypto" },
 ]
+
+const COINGECKO_IDS: Record<string, string> = {
+  btc: "bitcoin", eth: "ethereum", bnb: "binancecoin", sol: "solana",
+  xrp: "ripple", ada: "cardano", doge: "dogecoin",
+  usd: "usd", eur: "eur", gbp: "gbp", jpy: "jpy", aud: "aud",
+  cad: "cad", chf: "chf", cny: "cny", hkd: "hkd", sgd: "sgd",
+  inr: "inr", krw: "krw", thb: "thb", vnd: "vietnamese-dong",
+  khr: "cambodian-riel", myr: "malaysian-ringgit", idr: "indonesian-rupiah",
+  php: "philippine-peso",
+}
 
 export default function CurrencyConverterPage() {
   const [amount, setAmount] = useState("1")
@@ -29,6 +50,10 @@ export default function CurrencyConverterPage() {
   const [rate, setRate] = useState<number | null>(null)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
+
+  const fromInfo = currencies.find(c => c.code === from)
+  const toInfo = currencies.find(c => c.code === to)
+  const isCrypto = (code: string) => currencies.find(c => c.code === code)?.type === "crypto"
 
   const fetchRate = async () => {
     if (from === to) {
@@ -41,11 +66,38 @@ export default function CurrencyConverterPage() {
     setError("")
 
     try {
-      const res = await fetch(`https://api.exchangerate-api.com/v4/latest/${from}`)
-      if (!res.ok) throw new Error("Failed to fetch rates")
-      const data = await res.json()
-      if (!data.rates[to]) throw new Error("Currency not supported")
-      setRate(data.rates[to])
+      let fetchedRate: number
+
+      if (isCrypto(from) || isCrypto(to)) {
+        // Use CoinGecko for any crypto pair
+        const baseId = COINGECKO_IDS[from.toLowerCase()]
+        const targetId = COINGECKO_IDS[to.toLowerCase()]
+        if (!baseId || !targetId) throw new Error("Currency not supported")
+        const res = await fetch(
+          `https://api.coingecko.com/api/v3/simple/price?ids=${baseId}&vs_currencies=${targetId === "usd" ? "usd" : targetId}`
+        )
+        if (!res.ok) throw new Error("Failed to fetch rate")
+        const data = await res.json()
+        if (targetId === "usd") {
+          fetchedRate = data[baseId]?.usd ?? data[baseId]?.[targetId]
+        } else {
+          fetchedRate = data[baseId]?.[targetId]
+        }
+        if (!fetchedRate) throw new Error("Rate not found")
+      } else {
+        // Fiat-to-fiat: use CoinGecko exchange rates
+        const res = await fetch(
+          `https://api.coingecko.com/api/v3/exchange_rates`
+        )
+        if (!res.ok) throw new Error("Failed to fetch rates")
+        const data = await res.json()
+        const rates = data.rates
+        const fromRate = rates[from.toLowerCase()]?.value ?? 1
+        const toRate = rates[to.toLowerCase()]?.value ?? 1
+        fetchedRate = toRate / fromRate
+      }
+
+      setRate(fetchedRate)
     } catch {
       setError("Failed to fetch exchange rate. Please try again.")
       setRate(null)
