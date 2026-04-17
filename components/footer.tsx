@@ -21,8 +21,26 @@ export function Footer() {
             >
               Home
             </Link>
+            <Link
+              href="/about"
+              className="text-zinc-600 dark:text-zinc-400 hover:text-sky-500 dark:hover:text-sky-400"
+            >
+              About
+            </Link>
+            <Link
+              href="/privacy"
+              className="text-zinc-600 dark:text-zinc-400 hover:text-sky-500 dark:hover:text-sky-400"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/contact"
+              className="text-zinc-600 dark:text-zinc-400 hover:text-sky-500 dark:hover:text-sky-400"
+            >
+              Contact
+            </Link>
             <a
-              href="https://github.com/koombi/tonle.app"
+              href="https://github.com/nimmitstar/tonle.app"
               target="_blank"
               rel="noopener noreferrer"
               className="text-zinc-600 dark:text-zinc-400 hover:text-sky-500 dark:hover:text-sky-400"
