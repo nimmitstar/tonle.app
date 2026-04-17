@@ -13,20 +13,19 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>("light")
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
     const saved = localStorage.getItem("theme") as Theme | null
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches
-    setTheme(saved || (prefersDark ? "dark" : "light"))
+    if (saved) {
+      setTheme(saved)
+    }
+    // Default to light — only use saved preference
   }, [])
 
   useEffect(() => {
-    if (!mounted) return
     document.documentElement.classList.toggle("dark", theme === "dark")
     localStorage.setItem("theme", theme)
-  }, [theme, mounted])
+  }, [theme])
 
   const toggleTheme = () => setTheme((t) => (t === "light" ? "dark" : "light"))
 
