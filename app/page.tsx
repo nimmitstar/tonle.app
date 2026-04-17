@@ -320,6 +320,41 @@ const tools = [
     icon: ImageIcon,
     category: "Utility",
   },
+  {
+    title: "Image Cropper",
+    description: "Crop images with precision. Choose aspect ratios or free-form crop, preview, and download.",
+    href: "/image-cropper",
+    icon: ImageIcon,
+    category: "Utility",
+  },
+  {
+    title: "Random Number Generator",
+    description: "Generate random numbers within a range. Customize count, duplicates, sorting, and decimals.",
+    href: "/random-number-generator",
+    icon: Hash,
+    category: "Math",
+  },
+  {
+    title: "JSON to CSV",
+    description: "Convert JSON arrays to CSV format. Handles nested objects by flattening keys with dot notation.",
+    href: "/json-to-csv",
+    icon: Code,
+    category: "Developer",
+  },
+  {
+    title: "CSS Gradient Generator",
+    description: "Create beautiful CSS gradients with live preview. Choose colors, direction, and copy CSS code.",
+    href: "/css-gradient-generator",
+    icon: Palette,
+    category: "Developer",
+  },
+  {
+    title: "Text to Binary",
+    description: "Convert text to binary and vice versa. Includes ASCII reference table for common characters.",
+    href: "/text-to-binary",
+    icon: Binary,
+    category: "Developer",
+  },
 ]
 
 // Serializable tools for client component (iconName as string only)
@@ -359,6 +394,11 @@ const toolsForList = [
   { title: "Stopwatch", description: "Measure elapsed time with millisecond precision, start/stop/reset, and lap functionality.", href: "/stopwatch", iconName: "Hourglass", category: "Utility" },
   { title: "Image Compressor", description: "Compress images with adjustable quality. Reduce file size while maintaining quality.", href: "/image-compressor", iconName: "ImageIcon", category: "Utility" },
   { title: "Image Resizer", description: "Resize images to specific dimensions or by percentage. Maintain aspect ratio option available.", href: "/image-resizer", iconName: "ImageIcon", category: "Utility" },
+  { title: "Image Cropper", description: "Crop images with precision. Choose aspect ratios or free-form crop, preview, and download.", href: "/image-cropper", iconName: "ImageIcon", category: "Utility" },
+  { title: "Random Number Generator", description: "Generate random numbers within a range. Customize count, duplicates, sorting, and decimals.", href: "/random-number-generator", iconName: "Hash", category: "Math" },
+  { title: "JSON to CSV", description: "Convert JSON arrays to CSV format. Handles nested objects by flattening keys with dot notation.", href: "/json-to-csv", iconName: "Code", category: "Developer" },
+  { title: "CSS Gradient Generator", description: "Create beautiful CSS gradients with live preview. Choose colors, direction, and copy CSS code.", href: "/css-gradient-generator", iconName: "Palette", category: "Developer" },
+  { title: "Text to Binary", description: "Convert text to binary and vice versa. Includes ASCII reference table for common characters.", href: "/text-to-binary", iconName: "Binary", category: "Developer" },
 ]
 
 const featuredTools = [
@@ -393,7 +433,7 @@ export default function HomePage() {
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-sm font-medium mb-5 animate-fade-in">
               <Zap className="w-4 h-4" />
-              35 free tools, no signup required
+              40 free tools, no signup required
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-4 animate-fade-in">
