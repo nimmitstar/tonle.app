@@ -58,6 +58,8 @@ import {
   BarChart3,
   Banknote,
   Coffee,
+  Moon,
+  Volume2,
 } from "lucide-react"
 
 const tools = [
@@ -118,6 +120,20 @@ const tools = [
     icon: Coffee,
     category: "Finance",
   },
+  {
+    title: "Margin Calculator",
+    description: "Calculate gross margin, markup, and profit. Find selling price from target margin.",
+    href: "/margin-calculator",
+    icon: Percent,
+    category: "Finance",
+  },
+  {
+    title: "SIP Calculator",
+    description: "Calculate returns on your Systematic Investment Plan with visual breakdown.",
+    href: "/sip-calculator",
+    icon: TrendingUp,
+    category: "Finance",
+  },
   // Word Tools
   {
     title: "Word Counter",
@@ -152,6 +168,13 @@ const tools = [
     description: "Create secure random passwords with customizable options and strength meter.",
     href: "/password-generator",
     icon: Lock,
+    category: "Word Tools",
+  },
+  {
+    title: "Text to Speech",
+    description: "Convert text to spoken words using browser voices with speed and pitch controls.",
+    href: "/text-to-speech",
+    icon: Volume2,
     category: "Word Tools",
   },
   // Developer Tools
@@ -190,6 +213,13 @@ const tools = [
     icon: QrCode,
     category: "Developer",
   },
+  {
+    title: "Number Base Converter",
+    description: "Convert numbers between decimal, binary, octal, and hexadecimal formats instantly.",
+    href: "/number-base-converter",
+    icon: Hash,
+    category: "Developer",
+  },
   // Health Tools
   {
     title: "Age Calculator",
@@ -203,6 +233,13 @@ const tools = [
     description: "Calculate your Body Mass Index (BMI) and check your health category with visual scale.",
     href: "/bmi-calculator",
     icon: Cake,
+    category: "Health",
+  },
+  {
+    title: "Sleep Calculator",
+    description: "Find optimal sleep and wake times based on 90-minute sleep cycles.",
+    href: "/sleep-calculator",
+    icon: Moon,
     category: "Health",
   },
   // Math Tools
@@ -278,7 +315,7 @@ export default function HomePage() {
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-sm font-medium mb-6 animate-fade-in">
               <Zap className="w-4 h-4" />
-              25 free tools, no signup required
+              30 free tools, no signup required
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-6 animate-fade-in">
