@@ -16,17 +16,16 @@
  * 6. Redeploy — ads appear automatically
  */
 
-const AD_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID
-const AD_ENABLED = !!AD_CLIENT
+const AD_CLIENT = process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID || "ca-pub-7520364222952193"
+const AD_ENABLED = true
 
 // Place in layout.tsx <head> — loads AdSense SDK
 export function AdSenseScript() {
-  if (!AD_ENABLED) return null
-
+  // Always load the AdSense SDK — Google uses it for verification + serving
   return (
     <script
       async
-      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${AD_CLIENT}`}
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7520364222952193"
       crossOrigin="anonymous"
     />
   )
