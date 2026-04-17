@@ -48,6 +48,11 @@ import {
   Heart,
   CheckCircle2,
   ArrowRight,
+  Calendar,
+  Cake,
+  Calculator,
+  Clock,
+  Ruler,
 } from "lucide-react"
 
 const tools = [
@@ -159,6 +164,44 @@ const tools = [
     icon: QrCode,
     category: "Developer",
   },
+  // Health Tools
+  {
+    title: "Age Calculator",
+    description: "Calculate your exact age in years, months, and days. Get a countdown to your next birthday.",
+    href: "/age-calculator",
+    icon: Calendar,
+    category: "Health",
+  },
+  {
+    title: "BMI Calculator",
+    description: "Calculate your Body Mass Index (BMI) and check your health category with visual scale.",
+    href: "/bmi-calculator",
+    icon: Cake,
+    category: "Health",
+  },
+  // Math Tools
+  {
+    title: "Percentage Calculator",
+    description: "Calculate percentages: X% of Y, what % X is of Y, and percentage change between values.",
+    href: "/percentage-calculator",
+    icon: Calculator,
+    category: "Math",
+  },
+  // Utility Tools
+  {
+    title: "Time Zone Converter",
+    description: "Convert time between any two time zones worldwide. Perfect for scheduling across regions.",
+    href: "/timezone-converter",
+    icon: Clock,
+    category: "Utility",
+  },
+  {
+    title: "Unit Converter",
+    description: "Convert length, weight, temperature, speed, area, and volume between metric and imperial units.",
+    href: "/unit-converter",
+    icon: Ruler,
+    category: "Utility",
+  },
 ]
 
 const featuredTools = [
@@ -167,7 +210,7 @@ const featuredTools = [
   tools[8], // Password Generator
 ]
 
-const categories = ["Finance", "Word Tools", "Developer"] as const
+const categories = ["Finance", "Word Tools", "Developer", "Health", "Math", "Utility"] as const
 
 const trustBadges = [
   { icon: CheckCircle2, label: "100% Free" },
@@ -195,7 +238,7 @@ export default function HomePage() {
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-sm font-medium mb-6 animate-fade-in">
               <Zap className="w-4 h-4" />
-              15 free tools, no signup required
+              20 free tools, no signup required
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-6 animate-fade-in">
@@ -323,6 +366,28 @@ export default function HomePage() {
               <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
                 Format JSON, encode Base64 and URLs, convert colors between formats, and generate
                 QR codes instantly. All tools work offline and respect your privacy.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-rose-50 to-rose-50/0 dark:from-rose-950/30 dark:to-transparent border border-rose-100 dark:border-rose-900/30">
+              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                <Heart className="w-5 h-5 text-rose-500" />
+                Health Tools
+              </h3>
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Calculate your exact age with birthday countdown, check your BMI with visual health
+                categories, and track your wellness metrics.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-cyan-50 to-cyan-50/0 dark:from-cyan-950/30 dark:to-transparent border border-cyan-100 dark:border-cyan-900/30">
+              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                <Calculator className="w-5 h-5 text-cyan-500" />
+                Math & Utility Tools
+              </h3>
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Calculate percentages, convert between time zones, and handle unit conversions for
+                length, weight, temperature, and more.
               </p>
             </div>
           </div>
