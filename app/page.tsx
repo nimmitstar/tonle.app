@@ -53,6 +53,11 @@ import {
   Calculator,
   Clock,
   Ruler,
+  Timer,
+  Hourglass,
+  BarChart3,
+  Banknote,
+  Coffee,
 } from "lucide-react"
 
 const tools = [
@@ -90,6 +95,27 @@ const tools = [
     description: "Convert between 150+ world currencies with real-time exchange rates.",
     href: "/currency-converter",
     icon: DollarSign,
+    category: "Finance",
+  },
+  {
+    title: "Stock ROI Calculator",
+    description: "Calculate stock investment returns with total ROI, annualized return, and CAGR metrics.",
+    href: "/stock-roi-calculator",
+    icon: BarChart3,
+    category: "Finance",
+  },
+  {
+    title: "Inflation Calculator",
+    description: "See how inflation affects purchasing power using US CPI historical data.",
+    href: "/inflation-calculator",
+    icon: Banknote,
+    category: "Finance",
+  },
+  {
+    title: "Tip Calculator",
+    description: "Calculate tip amount and split the bill between multiple people with quick presets.",
+    href: "/tip-calculator",
+    icon: Coffee,
     category: "Finance",
   },
   // Word Tools
@@ -202,6 +228,20 @@ const tools = [
     icon: Ruler,
     category: "Utility",
   },
+  {
+    title: "Countdown Timer",
+    description: "Count down to any date and time. Perfect for events, deadlines, and reminders.",
+    href: "/countdown-timer",
+    icon: Timer,
+    category: "Utility",
+  },
+  {
+    title: "Stopwatch",
+    description: "Measure elapsed time with millisecond precision, start/stop/reset, and lap functionality.",
+    href: "/stopwatch",
+    icon: Hourglass,
+    category: "Utility",
+  },
 ]
 
 const featuredTools = [
@@ -238,7 +278,7 @@ export default function HomePage() {
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-sm font-medium mb-6 animate-fade-in">
               <Zap className="w-4 h-4" />
-              20 free tools, no signup required
+              25 free tools, no signup required
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-6 animate-fade-in">
