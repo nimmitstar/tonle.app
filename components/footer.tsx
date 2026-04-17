@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { ExternalLink, X, Heart } from "lucide-react"
+import { ExternalLink, Heart } from "lucide-react"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -132,15 +132,6 @@ export function Footer() {
                 aria-label="GitHub"
               >
                 <ExternalLink className="w-5 h-5 text-zinc-500" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-800 transition-colors"
-                aria-label="X (Twitter)"
-              >
-                <X className="w-5 h-5 text-zinc-500" />
               </a>
             </div>
           </div>
