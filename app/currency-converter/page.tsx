@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { DollarSign, RefreshCw, TrendingUp } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { AffiliateCard } from "@/components/affiliate-card"
 
 const currencies = [
   { code: "USD", name: "US Dollar" },
@@ -182,6 +183,12 @@ export default function CurrencyConverterPage() {
           </div>
         </div>
       )}
+
+      <AffiliateCard
+        description="Need to send money abroad?"
+        linkText="Send money internationally"
+        href="#ref"
+      />
     </ToolPageLayout>
   )
 }

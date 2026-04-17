@@ -60,6 +60,10 @@ import {
   Coffee,
   Moon,
   Volume2,
+  ScanLine,
+  Image as ImageIcon,
+  File,
+  Tag,
 } from "lucide-react"
 
 const tools = [
@@ -132,6 +136,13 @@ const tools = [
     description: "Calculate returns on your Systematic Investment Plan with visual breakdown.",
     href: "/sip-calculator",
     icon: TrendingUp,
+    category: "Finance",
+  },
+  {
+    title: "Discount Calculator",
+    description: "Calculate final price and savings after applying single or multiple percentage discounts.",
+    href: "/discount-calculator",
+    icon: Tag,
     category: "Finance",
   },
   // Word Tools
@@ -220,6 +231,20 @@ const tools = [
     icon: Hash,
     category: "Developer",
   },
+  {
+    title: "PDF Merge",
+    description: "Merge multiple PDF files into one. Rearrange pages and download the merged PDF.",
+    href: "/pdf-merge",
+    icon: File,
+    category: "Developer",
+  },
+  {
+    title: "QR Code Reader",
+    description: "Scan QR codes using your camera or upload an image. Instantly decode URLs and text.",
+    href: "/qr-code-reader",
+    icon: ScanLine,
+    category: "Developer",
+  },
   // Health Tools
   {
     title: "Age Calculator",
@@ -279,6 +304,20 @@ const tools = [
     icon: Hourglass,
     category: "Utility",
   },
+  {
+    title: "Image Compressor",
+    description: "Compress images with adjustable quality. Reduce file size while maintaining quality.",
+    href: "/image-compressor",
+    icon: ImageIcon,
+    category: "Utility",
+  },
+  {
+    title: "Image Resizer",
+    description: "Resize images to specific dimensions or by percentage. Maintain aspect ratio option available.",
+    href: "/image-resizer",
+    icon: ImageIcon,
+    category: "Utility",
+  },
 ]
 
 const featuredTools = [
@@ -315,7 +354,7 @@ export default function HomePage() {
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-sm font-medium mb-6 animate-fade-in">
               <Zap className="w-4 h-4" />
-              30 free tools, no signup required
+              35 free tools, no signup required
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-6 animate-fade-in">

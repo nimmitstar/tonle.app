@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { TrendingUp, ArrowDownRight, ArrowUpRight } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { AffiliateCard } from "@/components/affiliate-card"
 
 export default function CryptoProfitCalculatorPage() {
   const [buyPrice, setBuyPrice] = useState("")
@@ -118,6 +119,12 @@ export default function CryptoProfitCalculatorPage() {
           </div>
         </div>
       )}
+
+      <AffiliateCard
+        description="Trade crypto with low fees:"
+        linkText="Trade on Binance"
+        href="https://www.binance.com/en/register?ref=#ref"
+      />
     </ToolPageLayout>
   )
 }

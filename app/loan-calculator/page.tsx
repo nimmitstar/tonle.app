@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { Landmark, Percent } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { AffiliateCard } from "@/components/affiliate-card"
 
 export default function LoanCalculatorPage() {
   const [principal, setPrincipal] = useState("")
@@ -166,6 +167,12 @@ export default function LoanCalculatorPage() {
           </div>
         </>
       )}
+
+      <AffiliateCard
+        description="Looking for better rates?"
+        linkText="Compare loan rates"
+        href="#ref"
+      />
     </ToolPageLayout>
   )
 }
