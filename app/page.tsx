@@ -1,4 +1,5 @@
 import { ToolCard } from "@/components/tool-card"
+import { BetweenToolsAd } from "@/components/adsense"
 import {
   TrendingUp,
   Repeat,
@@ -235,19 +236,22 @@ export default function HomePage() {
       {/* All Tools by Category */}
       <section id="tools" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {categories.map((category, idx) => (
-          <div key={category} className="mb-16">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-1 h-8 bg-sky-500 rounded-full" />
-              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-                {category}
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
-              {tools
-                .filter((tool) => tool.category === category)
-                .map((tool) => (
-                  <ToolCard key={tool.href} {...tool} />
-                ))}
+          <div key={category}>
+            {idx > 0 && <BetweenToolsAd />}
+            <div className="mb-16">
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-1 h-8 bg-sky-500 rounded-full" />
+                <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+                  {category}
+                </h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
+                {tools
+                  .filter((tool) => tool.category === category)
+                  .map((tool) => (
+                    <ToolCard key={tool.href} {...tool} />
+                  ))}
+              </div>
             </div>
           </div>
         ))}

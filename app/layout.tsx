@@ -4,6 +4,7 @@ import "./globals.css"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
+import { AdSenseScript } from "@/components/adsense"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -50,6 +51,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <AdSenseScript />
+      </head>
       <body className={`${inter.variable} min-h-screen flex flex-col`}>
         <ThemeProvider>
           <Header />
