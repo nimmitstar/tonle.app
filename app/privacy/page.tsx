@@ -4,6 +4,7 @@ import { Shield, Lock, Eye, Cookie, Server, Globe, ShieldCheck, FileCheck } from
 export const metadata: Metadata = {
   title: "Privacy Policy | Tonle",
   description: "Privacy policy for Tonle — free online tools for finance, crypto, and more.",
+  alternates: { canonical: "https://tonle.app/privacy" },
 }
 
 const sections = [

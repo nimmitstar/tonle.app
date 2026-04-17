@@ -1,5 +1,30 @@
 import { ToolCard } from "@/components/tool-card"
 import { BetweenToolsAd } from "@/components/adsense"
+import Link from "next/link"
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Tonle",
+  url: "https://tonle.app",
+  description: "Free online tools for finance, crypto, word processing, and developer utilities.",
+  potentialAction: {
+    "@type": "SearchAction",
+    target: "https://tonle.app/{search_term_string}",
+    "query-input": "required name=search_term_string",
+  },
+}
+
+const softwareJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Tonle Online Tools",
+  url: "https://tonle.app",
+  applicationCategory: "UtilitiesApplication",
+  operatingSystem: "Any",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+}
+
 import {
   TrendingUp,
   Repeat,
@@ -24,7 +49,6 @@ import {
   CheckCircle2,
   ArrowRight,
 } from "lucide-react"
-import Link from "next/link"
 
 const tools = [
   // Finance & Crypto
@@ -155,6 +179,9 @@ const trustBadges = [
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }} />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-sky-50/50 to-transparent dark:from-sky-950/30 dark:via-sky-950/10">
         {/* Animated background elements */}

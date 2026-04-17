@@ -5,6 +5,7 @@ import Link from "next/link"
 export const metadata: Metadata = {
   title: "About | Tonle",
   description: "Learn about Tonle — free online tools for finance, crypto, word processing, and developer utilities.",
+  alternates: { canonical: "https://tonle.app/about" },
 }
 
 const values = [

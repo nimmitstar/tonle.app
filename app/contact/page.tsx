@@ -4,6 +4,7 @@ import { Mail, Bug, Lightbulb, Clock } from "lucide-react"
 export const metadata: Metadata = {
   title: "Contact | Tonle",
   description: "Get in touch with the Tonle team. Questions, feedback, or bug reports welcome.",
+  alternates: { canonical: "https://tonle.app/contact" },
 }
 
 export default function Contact() {

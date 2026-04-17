@@ -15,10 +15,16 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Tonle — Free Online Tools for Finance, Crypto & More",
   description: "15 free online tools for finance calculations, cryptocurrency profit tracking, word processing, and developer utilities. Fast, private, no signup required.",
-  keywords: ["online tools", "calculator", "crypto", "finance", "word counter", "json formatter", "base64"],
   authors: [{ name: "Tonle" }],
   creator: "Tonle",
   publisher: "Tonle",
+  icons: {
+    icon: [
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+  },
   formatDetection: {
     email: false,
     address: false,
@@ -42,6 +48,7 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  alternates: { canonical: "https://tonle.app" },
 }
 
 export default function RootLayout({
