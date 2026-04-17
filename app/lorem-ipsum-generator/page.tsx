@@ -1,8 +1,8 @@
 "use client"
 
 import { useState } from "react"
-import { AlignLeft, Copy, Check } from "lucide-react"
-import Link from "next/link"
+import { AlignLeft, Copy, Check, FileText } from "lucide-react"
+import { ToolPageLayout } from "@/components/tool-page-layout"
 
 const loremWords = [
   "lorem", "ipsum", "dolor", "sit", "amet", "consectetur", "adipiscing", "elit",
@@ -73,101 +73,89 @@ export default function LoremIpsumGeneratorPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-            Lorem Ipsum Generator
-          </h1>
-          <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-            Generate placeholder lorem ipsum text for your designs and mockups
-          </p>
-        </div>
-
-        <div className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
-                Type
-              </label>
-              <select
-                value={type}
-                onChange={(e) => setType(e.target.value as any)}
-                className="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-sky-500 focus:border-transparent"
-              >
-                <option value="paragraphs">Paragraphs</option>
-                <option value="sentences">Sentences</option>
-                <option value="words">Words</option>
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
-                Amount (1-100)
-              </label>
-              <input
-                type="number"
-                value={count}
-                onChange={(e) => setCount(e.target.value)}
-                placeholder="3"
-                min="1"
-                max="100"
-                className="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-sky-500 focus:border-transparent"
-              />
-            </div>
-            <div className="flex items-end">
-              <button
-                onClick={generate}
-                className="w-full px-6 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors font-medium"
-              >
-                Generate
-              </button>
-            </div>
-          </div>
-        </div>
-
-        {generated && (
-          <div className="mt-8 bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                Generated Text
-              </h2>
-              <button
-                onClick={copyToClipboard}
-                className="flex items-center gap-2 px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-              >
-                {copied ? (
-                  <>
-                    <Check className="w-4 h-4 text-green-500" />
-                    <span className="text-sm">Copied!</span>
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4 text-zinc-500" />
-                    <span className="text-sm">Copy</span>
-                  </>
-                )}
-              </button>
-            </div>
-            <div className="p-4 bg-zinc-50 dark:bg-zinc-800 rounded-lg whitespace-pre-wrap text-zinc-700 dark:text-zinc-300">
-              {generated}
-            </div>
-          </div>
-        )}
-
-        <div className="mt-12">
-          <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-            Related Tools
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/word-counter"
-              className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+    <ToolPageLayout
+      title="Lorem Ipsum Generator"
+      description="Generate placeholder lorem ipsum text for your designs and mockups."
+      category="Word Tools"
+      relatedTools={[
+        {
+          title: "Word Counter",
+          description: "Count words, characters, sentences, paragraphs, and estimate reading time.",
+          href: "/word-counter",
+          icon: FileText,
+          category: "Word Tools",
+        },
+      ]}
+    >
+      <div className="p-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div>
+            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+              Type
+            </label>
+            <select
+              value={type}
+              onChange={(e) => setType(e.target.value as any)}
+              className="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-sky-500 focus:border-transparent"
             >
-              Word Counter
-            </Link>
+              <option value="paragraphs">Paragraphs</option>
+              <option value="sentences">Sentences</option>
+              <option value="words">Words</option>
+            </select>
+          </div>
+          <div>
+            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+              Amount (1-100)
+            </label>
+            <input
+              type="number"
+              value={count}
+              onChange={(e) => setCount(e.target.value)}
+              placeholder="3"
+              min="1"
+              max="100"
+              className="w-full px-4 py-3 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 focus:ring-2 focus:ring-sky-500 focus:border-transparent"
+            />
+          </div>
+          <div className="flex items-end">
+            <button
+              onClick={generate}
+              className="w-full px-6 py-3 bg-sky-500 text-white rounded-lg hover:bg-sky-600 transition-colors font-medium"
+            >
+              Generate
+            </button>
           </div>
         </div>
       </div>
-    </div>
+
+      {generated && (
+        <div className="border-t border-zinc-200 dark:border-zinc-800 p-6">
+          <div className="flex justify-between items-center mb-4">
+            <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+              Generated Text
+            </h2>
+            <button
+              onClick={copyToClipboard}
+              className="flex items-center gap-2 px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
+            >
+              {copied ? (
+                <>
+                  <Check className="w-4 h-4 text-green-500" />
+                  <span className="text-sm">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="w-4 h-4 text-zinc-500" />
+                  <span className="text-sm">Copy</span>
+                </>
+              )}
+            </button>
+          </div>
+          <div className="p-4 bg-zinc-50 dark:bg-zinc-800 rounded-lg whitespace-pre-wrap text-zinc-700 dark:text-zinc-300">
+            {generated}
+          </div>
+        </div>
+      )}
+    </ToolPageLayout>
   )
 }

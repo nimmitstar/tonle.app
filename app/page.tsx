@@ -16,7 +16,14 @@ import {
   Globe,
   Palette,
   QrCode,
+  Shield,
+  Zap,
+  WifiOff,
+  Heart,
+  CheckCircle2,
+  ArrowRight,
 } from "lucide-react"
+import Link from "next/link"
 
 const tools = [
   // Finance & Crypto
@@ -129,36 +136,113 @@ const tools = [
   },
 ]
 
+const featuredTools = [
+  tools[0], // Crypto Profit Calculator
+  tools[2], // Loan Calculator
+  tools[8], // Password Generator
+]
+
 const categories = ["Finance", "Word Tools", "Developer"] as const
+
+const trustBadges = [
+  { icon: CheckCircle2, label: "100% Free" },
+  { icon: Shield, label: "Privacy First" },
+  { icon: WifiOff, label: "Works Offline" },
+  { icon: Heart, label: "No Signup" },
+]
 
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      {/* Hero */}
-      <section className="bg-gradient-to-b from-sky-500/10 to-transparent dark:from-sky-500/5 border-b border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-sky-50 via-sky-50/50 to-transparent dark:from-sky-950/30 dark:via-sky-950/10">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-sky-400/10 rounded-full blur-3xl animate-float" />
+          <div className="absolute top-40 right-10 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl animate-float" style={{ animationDelay: "1s" }} />
+          <div className="absolute bottom-0 left-1/2 w-[600px] h-[300px] bg-gradient-to-t from-sky-100/50 to-transparent dark:from-sky-900/20 rounded-t-full blur-2xl" />
+        </div>
+
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight">
-              Tonle
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-sm font-medium mb-6 animate-fade-in">
+              <Zap className="w-4 h-4" />
+              15 free tools, no signup required
+            </div>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-6 animate-fade-in">
+              Your Daily Tools,
+              <br />
+              <span className="gradient-text">Simplified & Free</span>
             </h1>
-            <p className="mt-4 text-xl md:text-2xl text-zinc-600 dark:text-zinc-400">
-              Free Online Tools for Finance, Crypto & More
+
+            <p className="mt-6 text-xl md:text-2xl text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: "100ms" }}>
+              Fast, private tools that work in your browser. No tracking, no limits, no catch.
             </p>
-            <p className="mt-4 text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-              Fast, private tools that work in your browser. No signup, no tracking, no limits.
-            </p>
+
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in" style={{ animationDelay: "200ms" }}>
+              <Link
+                href="#tools"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-sky-500 hover:bg-sky-600 text-white font-semibold rounded-xl shadow-lg shadow-sky-500/30 hover:shadow-sky-500/50 transition-all hover:-translate-y-0.5"
+              >
+                Start Exploring
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-white dark:bg-zinc-900 hover:bg-zinc-50 dark:hover:bg-zinc-800 text-zinc-700 dark:text-zinc-300 font-semibold rounded-xl border border-zinc-200 dark:border-zinc-800 transition-all hover:-translate-y-0.5"
+              >
+                Learn More
+              </Link>
+            </div>
+          </div>
+
+          {/* Trust Bar */}
+          <div className="mt-16 max-w-2xl mx-auto animate-fade-in" style={{ animationDelay: "300ms" }}>
+            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
+              {trustBadges.map((badge) => (
+                <div key={badge.label} className="flex items-center gap-2 text-zinc-600 dark:text-zinc-400">
+                  <badge.icon className="w-5 h-5 text-sky-500" />
+                  <span className="text-sm font-medium">{badge.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Tools Grid */}
+      {/* Featured Tools */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {categories.map((category) => (
+        <div className="flex items-center justify-between mb-6">
+          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+            Featured Tools
+          </h2>
+          <Link
+            href="#tools"
+            className="text-sm font-medium text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300 flex items-center gap-1"
+          >
+            View all
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 stagger-children">
+          {featuredTools.map((tool) => (
+            <ToolCard key={tool.href} {...tool} />
+          ))}
+        </div>
+      </section>
+
+      {/* All Tools by Category */}
+      <section id="tools" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {categories.map((category, idx) => (
           <div key={category} className="mb-16">
-            <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 mb-6">
-              {category}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-1 h-8 bg-sky-500 rounded-full" />
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
+                {category}
+              </h2>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 stagger-children">
               {tools
                 .filter((tool) => tool.category === category)
                 .map((tool) => (
@@ -169,40 +253,61 @@ export default function HomePage() {
         ))}
       </section>
 
-      {/* SEO Content */}
+      {/* SEO Content - Made more visual */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 border-t border-zinc-200 dark:border-zinc-800">
-        <div className="max-w-3xl mx-auto prose dark:prose-invert">
-          <h2 className="text-2xl font-bold text-zinc-900 dark:text-zinc-100">
-            Why Use Tonle?
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mb-8 text-center">
+            Why Choose Tonle?
           </h2>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Tonle provides free, browser-based tools that respect your privacy. All calculations
-            happen locally on your device — we never send your data to a server. Whether you're
-            calculating investment returns, formatting code, or generating passwords, our tools
-            are fast, reliable, and completely free.
-          </p>
-          <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mt-6">
-            Finance & Crypto Tools
-          </h3>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Track your crypto investments, plan DCA strategies, calculate loan payments, and
-            understand compound interest. Our currency converter uses real-time exchange rates
-            for accurate conversions.
-          </p>
-          <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mt-6">
-            Word & Text Tools
-          </h3>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Count words and characters, convert text cases, generate lorem ipsum for mockups,
-            and create secure passwords. Perfect for writers, editors, and developers.
-          </p>
-          <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mt-6">
-            Developer Utilities
-          </h3>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Format JSON, encode Base64 and URLs, convert colors between formats, and generate
-            QR codes instantly. All tools work offline and respect your privacy.
-          </p>
+
+          <div className="grid gap-8">
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-emerald-50 to-emerald-50/0 dark:from-emerald-950/30 dark:to-transparent border border-emerald-100 dark:border-emerald-900/30">
+              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                <TrendingUp className="w-5 h-5 text-emerald-500" />
+                Finance & Crypto Tools
+              </h3>
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Track your crypto investments, plan DCA strategies, calculate loan payments, and
+                understand compound interest. Our currency converter uses real-time exchange rates
+                for accurate conversions.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-amber-50 to-amber-50/0 dark:from-amber-950/30 dark:to-transparent border border-amber-100 dark:border-amber-900/30">
+              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                <FileText className="w-5 h-5 text-amber-500" />
+                Word & Text Tools
+              </h3>
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Count words and characters, convert text cases, generate lorem ipsum for mockups,
+                and create secure passwords. Perfect for writers, editors, and developers.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-gradient-to-br from-violet-50 to-violet-50/0 dark:from-violet-950/30 dark:to-transparent border border-violet-100 dark:border-violet-900/30">
+              <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+                <Code className="w-5 h-5 text-violet-500" />
+                Developer Utilities
+              </h3>
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                Format JSON, encode Base64 and URLs, convert colors between formats, and generate
+                QR codes instantly. All tools work offline and respect your privacy.
+              </p>
+            </div>
+          </div>
+
+          <div className="mt-10 p-6 rounded-2xl bg-gradient-to-br from-sky-50 to-sky-50/0 dark:from-sky-950/30 dark:to-transparent border border-sky-100 dark:border-sky-900/30">
+            <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-3 flex items-center gap-2">
+              <Shield className="w-5 h-5 text-sky-500" />
+              Privacy First, Always
+            </h3>
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              Tonle provides free, browser-based tools that respect your privacy. All calculations
+              happen locally on your device — we never send your data to a server. Whether you're
+              calculating investment returns, formatting code, or generating passwords, our tools
+              are fast, reliable, and completely free.
+            </p>
+          </div>
         </div>
       </section>
     </div>

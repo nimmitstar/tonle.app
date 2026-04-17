@@ -1,8 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Palette, Copy, Check } from "lucide-react"
-import Link from "next/link"
+import { Palette, Copy, Check, QrCode } from "lucide-react"
+import { ToolPageLayout } from "@/components/tool-page-layout"
 
 export default function ColorConverterPage() {
   const [hex, setHex] = useState("#0EA5E9")
@@ -88,193 +88,181 @@ export default function ColorConverterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      <div className="max-w-4xl mx-auto px-4 py-12">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-            Color Converter
-          </h1>
-          <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-            Convert between HEX, RGB, and HSL color formats with live preview
-          </p>
+    <ToolPageLayout
+      title="Color Converter"
+      description="Convert between HEX, RGB, and HSL color formats with live preview."
+      category="Developer"
+      relatedTools={[
+        {
+          title: "QR Code Generator",
+          description: "Generate QR codes for URLs, text, and contact information.",
+          href: "/qr-code-generator",
+          icon: QrCode,
+          category: "Developer",
+        },
+      ]}
+    >
+      {/* Color Preview */}
+      <div
+        className="h-32 border-b border-zinc-200 dark:border-zinc-800"
+        style={{ backgroundColor: hex }}
+      />
+
+      <div className="p-6 grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* HEX Input */}
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+            HEX
+          </label>
+          <div className="flex gap-2">
+            <input
+              type="color"
+              value={hex}
+              onChange={(e) => setHex(e.target.value)}
+              className="w-12 h-12 rounded cursor-pointer"
+            />
+            <input
+              type="text"
+              value={hex}
+              onChange={(e) => setHex(e.target.value)}
+              maxLength={7}
+              className="flex-1 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-mono uppercase"
+            />
+          </div>
+          <button
+            onClick={() => copyToClipboard(hex, "hex")}
+            className="mt-3 w-full px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-sm flex items-center justify-center gap-2"
+          >
+            {copied === "hex" ? (
+              <>
+                <Check className="w-4 h-4 text-green-500" />
+                Copied!
+              </>
+            ) : (
+              <>
+                <Copy className="w-4 h-4 text-zinc-500" />
+                Copy
+              </>
+            )}
+          </button>
         </div>
 
-        {/* Color Preview */}
-        <div
-          className="h-32 rounded-xl mb-8 shadow-inner"
-          style={{ backgroundColor: hex }}
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* HEX Input */}
-          <div className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-6">
-            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
-              HEX
-            </label>
-            <div className="flex gap-2">
+        {/* RGB Input */}
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+            RGB
+          </label>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="w-4 text-xs text-red-500">R</span>
               <input
-                type="color"
-                value={hex}
-                onChange={(e) => setHex(e.target.value)}
-                className="w-12 h-12 rounded cursor-pointer"
-              />
-              <input
-                type="text"
-                value={hex}
-                onChange={(e) => setHex(e.target.value)}
-                maxLength={7}
-                className="flex-1 px-4 py-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 font-mono uppercase"
+                type="number"
+                value={rgb.r}
+                onChange={(e) => setRgb({ ...rgb, r: Math.max(0, Math.min(255, parseInt(e.target.value) || 0)) })}
+                min="0"
+                max="255"
+                className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
               />
             </div>
-            <button
-              onClick={() => copyToClipboard(hex, "hex")}
-              className="mt-3 w-full px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-sm flex items-center justify-center gap-2"
-            >
-              {copied === "hex" ? (
-                <>
-                  <Check className="w-4 h-4 text-green-500" />
-                  Copied!
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4 text-zinc-500" />
-                  Copy
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* RGB Input */}
-          <div className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-6">
-            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
-              RGB
-            </label>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <span className="w-4 text-xs text-red-500">R</span>
-                <input
-                  type="number"
-                  value={rgb.r}
-                  onChange={(e) => setRgb({ ...rgb, r: Math.max(0, Math.min(255, parseInt(e.target.value) || 0)) })}
-                  min="0"
-                  max="255"
-                  className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
-                />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 text-xs text-green-500">G</span>
-                <input
-                  type="number"
-                  value={rgb.g}
-                  onChange={(e) => setRgb({ ...rgb, g: Math.max(0, Math.min(255, parseInt(e.target.value) || 0)) })}
-                  min="0"
-                  max="255"
-                  className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
-                />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 text-xs text-blue-500">B</span>
-                <input
-                  type="number"
-                  value={rgb.b}
-                  onChange={(e) => setRgb({ ...rgb, b: Math.max(0, Math.min(255, parseInt(e.target.value) || 0)) })}
-                  min="0"
-                  max="255"
-                  className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
-                />
-              </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 text-xs text-green-500">G</span>
+              <input
+                type="number"
+                value={rgb.g}
+                onChange={(e) => setRgb({ ...rgb, g: Math.max(0, Math.min(255, parseInt(e.target.value) || 0)) })}
+                min="0"
+                max="255"
+                className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
+              />
             </div>
-            <button
-              onClick={() => copyToClipboard(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`, "rgb")}
-              className="mt-3 w-full px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-sm flex items-center justify-center gap-2"
-            >
-              {copied === "rgb" ? (
-                <>
-                  <Check className="w-4 h-4 text-green-500" />
-                  Copied!
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4 text-zinc-500" />
-                  Copy
-                </>
-              )}
-            </button>
-          </div>
-
-          {/* HSL Input */}
-          <div className="bg-white dark:bg-zinc-900 rounded-xl border border-zinc-200 dark:border-zinc-800 p-6">
-            <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
-              HSL
-            </label>
-            <div className="space-y-2">
-              <div className="flex items-center gap-2">
-                <span className="w-4 text-xs text-zinc-500">H</span>
-                <input
-                  type="number"
-                  value={hsl.h}
-                  onChange={(e) => setHsl({ ...hsl, h: Math.max(0, Math.min(360, parseInt(e.target.value) || 0)) })}
-                  min="0"
-                  max="360"
-                  className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
-                />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 text-xs text-zinc-500">S</span>
-                <input
-                  type="number"
-                  value={hsl.s}
-                  onChange={(e) => setHsl({ ...hsl, s: Math.max(0, Math.min(100, parseInt(e.target.value) || 0)) })}
-                  min="0"
-                  max="100"
-                  className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
-                />
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-4 text-xs text-zinc-500">L</span>
-                <input
-                  type="number"
-                  value={hsl.l}
-                  onChange={(e) => setHsl({ ...hsl, l: Math.max(0, Math.min(100, parseInt(e.target.value) || 0)) })}
-                  min="0"
-                  max="100"
-                  className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
-                />
-              </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 text-xs text-blue-500">B</span>
+              <input
+                type="number"
+                value={rgb.b}
+                onChange={(e) => setRgb({ ...rgb, b: Math.max(0, Math.min(255, parseInt(e.target.value) || 0)) })}
+                min="0"
+                max="255"
+                className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
+              />
             </div>
-            <button
-              onClick={() => copyToClipboard(`hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`, "hsl")}
-              className="mt-3 w-full px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-sm flex items-center justify-center gap-2"
-            >
-              {copied === "hsl" ? (
-                <>
-                  <Check className="w-4 h-4 text-green-500" />
-                  Copied!
-                </>
-              ) : (
-                <>
-                  <Copy className="w-4 h-4 text-zinc-500" />
-                  Copy
-                </>
-              )}
-            </button>
           </div>
+          <button
+            onClick={() => copyToClipboard(`rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`, "rgb")}
+            className="mt-3 w-full px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-sm flex items-center justify-center gap-2"
+          >
+            {copied === "rgb" ? (
+              <>
+                <Check className="w-4 h-4 text-green-500" />
+                Copied!
+              </>
+            ) : (
+              <>
+                <Copy className="w-4 h-4 text-zinc-500" />
+                Copy
+              </>
+            )}
+          </button>
         </div>
 
-        <div className="mt-12">
-          <h2 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100 mb-4">
-            Related Tools
-          </h2>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/qr-code-generator"
-              className="px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors"
-            >
-              QR Code Generator
-            </Link>
+        {/* HSL Input */}
+        <div>
+          <label className="block text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-2">
+            HSL
+          </label>
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <span className="w-4 text-xs text-zinc-500">H</span>
+              <input
+                type="number"
+                value={hsl.h}
+                onChange={(e) => setHsl({ ...hsl, h: Math.max(0, Math.min(360, parseInt(e.target.value) || 0)) })}
+                min="0"
+                max="360"
+                className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 text-xs text-zinc-500">S</span>
+              <input
+                type="number"
+                value={hsl.s}
+                onChange={(e) => setHsl({ ...hsl, s: Math.max(0, Math.min(100, parseInt(e.target.value) || 0)) })}
+                min="0"
+                max="100"
+                className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
+              />
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 text-xs text-zinc-500">L</span>
+              <input
+                type="number"
+                value={hsl.l}
+                onChange={(e) => setHsl({ ...hsl, l: Math.max(0, Math.min(100, parseInt(e.target.value) || 0)) })}
+                min="0"
+                max="100"
+                className="flex-1 px-3 py-2 rounded border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-900 dark:text-zinc-100 text-sm"
+              />
+            </div>
           </div>
+          <button
+            onClick={() => copyToClipboard(`hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`, "hsl")}
+            className="mt-3 w-full px-4 py-2 bg-zinc-100 dark:bg-zinc-800 rounded-lg hover:bg-zinc-200 dark:hover:bg-zinc-700 transition-colors text-sm flex items-center justify-center gap-2"
+          >
+            {copied === "hsl" ? (
+              <>
+                <Check className="w-4 h-4 text-green-500" />
+                Copied!
+              </>
+            ) : (
+              <>
+                <Copy className="w-4 h-4 text-zinc-500" />
+                Copy
+              </>
+            )}
+          </button>
         </div>
       </div>
-    </div>
+    </ToolPageLayout>
   )
 }
