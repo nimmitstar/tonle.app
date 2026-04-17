@@ -4,6 +4,7 @@ import { useState, useMemo } from "react"
 import { Calendar, Cake } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 export default function AgeCalculatorPage() {
@@ -128,6 +129,7 @@ export default function AgeCalculatorPage() {
               filename: "age-calculator"
             }}
           />
+          <ShareButtons toolName="Age Calculator" />
         </div>
       )}
     </ToolPageLayout>

@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Repeat, TrendingUp, Percent, Plus, Trash2, ArrowUpDown } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 interface Purchase {
@@ -290,6 +291,7 @@ export default function DCACalculatorPage() {
                   filename: "dca-calculator"
                 }}
               />
+              <ShareButtons toolName="DCA Calculator" />
             </div>
           )}
         </div>

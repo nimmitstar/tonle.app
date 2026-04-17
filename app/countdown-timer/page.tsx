@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react"
 import { Calendar, Clock, Play, Pause, RotateCcw } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate as formatExportDate } from "@/lib/export"
 
 export default function CountdownTimerPage() {
@@ -207,6 +208,7 @@ export default function CountdownTimerPage() {
                 filename: "countdown-timer"
               }}
             />
+            <ShareButtons toolName="Countdown Timer" />
         </div>
       )}
     </ToolPageLayout>

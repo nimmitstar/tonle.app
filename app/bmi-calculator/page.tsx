@@ -4,6 +4,7 @@ import { useState, useMemo } from "react"
 import { Scale, Ruler, Calendar } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 export default function BMICalculatorPage() {
@@ -165,6 +166,7 @@ export default function BMICalculatorPage() {
               filename: "bmi-calculator"
             }}
           />
+          <ShareButtons toolName="BMI Calculator" />
         </div>
       )}
     </ToolPageLayout>

@@ -5,6 +5,7 @@ import { TrendingUp, ArrowDownRight, ArrowUpRight } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { AffiliateCard } from "@/components/affiliate-card"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 export default function CryptoProfitCalculatorPage() {
@@ -136,6 +137,7 @@ export default function CryptoProfitCalculatorPage() {
               filename: "crypto-profit"
             }}
           />
+          <ShareButtons toolName="Crypto Profit Calculator" />
         </div>
       )}
 

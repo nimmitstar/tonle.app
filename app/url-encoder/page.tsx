@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Globe, Copy, Check, Binary } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 export default function URLEncoderPage() {
@@ -116,19 +117,22 @@ export default function URLEncoderPage() {
           <div>& → %26</div>
         </div>
         {output && (
-          <ExportButtons
-            data={{
-              title: "URL Encoder/Decoder",
-              date: formatDate(),
-              headers: ["Mode", "Result"],
-              rows: [
-                ["Operation", mode === "encode" ? "Encode" : "Decode"],
-                ["Input Length", input.length.toString()],
-                ["Output Length", output.length.toString()]
-              ],
-              filename: "url-encoder"
-            }}
-          />
+          <>
+            <ExportButtons
+              data={{
+                title: "URL Encoder/Decoder",
+                date: formatDate(),
+                headers: ["Mode", "Result"],
+                rows: [
+                  ["Operation", mode === "encode" ? "Encode" : "Decode"],
+                  ["Input Length", input.length.toString()],
+                  ["Output Length", output.length.toString()]
+                ],
+                filename: "url-encoder"
+              }}
+            />
+            <ShareButtons toolName="URL Encoder" />
+          </>
         )}
       </div>
     </ToolPageLayout>

@@ -4,6 +4,7 @@ import { useState, useMemo } from "react"
 import { Clock, Moon, Sunrise, BedDouble } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate as formatExportDate } from "@/lib/export"
 
 // 90 minutes per sleep cycle
@@ -255,6 +256,7 @@ export default function SleepCalculatorPage() {
             filename: "sleep-calculator"
           }}
         />
+        <ShareButtons toolName="Sleep Calculator" />
       </div>
     </ToolPageLayout>
   )

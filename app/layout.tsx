@@ -5,6 +5,7 @@ import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { AdSenseScript } from "@/components/adsense"
+import { StickyFooterAd } from "@/components/sticky-footer-ad"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -66,6 +67,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <StickyFooterAd />
         </ThemeProvider>
       </body>
     </html>

@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react"
 import { Clock, ArrowRight } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 const TIMEZONES = [
@@ -184,6 +185,7 @@ export default function TimezoneConverterPage() {
               filename: "timezone-converter"
             }}
           />
+          <ShareButtons toolName="Time Zone Converter" />
         </div>
       )}
     </ToolPageLayout>

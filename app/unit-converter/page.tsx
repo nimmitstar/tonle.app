@@ -4,6 +4,7 @@ import { useState, useMemo } from "react"
 import { ArrowRightLeft } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 type Category = "length" | "weight" | "temperature" | "speed" | "area" | "volume"
@@ -241,6 +242,7 @@ export default function UnitConverterPage() {
               filename: "unit-converter"
             }}
             />
+          <ShareButtons toolName="Unit Converter" />
         </div>
       )}
     </ToolPageLayout>

@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Percent, DollarSign, Plus, Trash2 } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 interface Discount {
@@ -238,6 +239,7 @@ export default function DiscountCalculatorPage() {
               filename: "discount-calculator"
             }}
           />
+          <ShareButtons toolName="Discount Calculator" />
         </div>
       )}
     </ToolPageLayout>

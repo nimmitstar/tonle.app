@@ -177,6 +177,13 @@ const tools = [
     category: "Word Tools",
   },
   {
+    title: "Text Wrap Remover",
+    description: "Remove unwanted line breaks and text wrapping. Clean up text from PDFs, emails, and formatted documents.",
+    href: "/text-wrap-remover",
+    icon: AlignLeft,
+    category: "Word Tools",
+  },
+  {
     title: "Password Generator",
     description: "Create secure random passwords with customizable options and strength meter.",
     href: "/password-generator",
@@ -277,6 +284,13 @@ const tools = [
     icon: Calculator,
     category: "Math",
   },
+  {
+    title: "Fibonacci Calculator",
+    description: "Calculate Fibonacci numbers, view the full sequence, and explore the golden ratio approximation.",
+    href: "/fibonacci-calculator",
+    icon: Hash,
+    category: "Math",
+  },
   // Utility Tools
   {
     title: "Time Zone Converter",
@@ -355,6 +369,13 @@ const tools = [
     icon: Binary,
     category: "Developer",
   },
+  {
+    title: "Markdown Preview",
+    description: "Live markdown editor with instant preview. Write markdown and see rendered HTML in real-time.",
+    href: "/markdown-preview",
+    icon: FileText,
+    category: "Developer",
+  },
 ]
 
 // Serializable tools for client component (iconName as string only)
@@ -374,6 +395,7 @@ const toolsForList = [
   { title: "Character Counter", description: "Count characters with and without spaces, plus letter frequency analysis.", href: "/character-counter", iconName: "Type", category: "Word Tools" },
   { title: "Case Converter", description: "Convert text to uppercase, lowercase, title case, sentence case, or toggle case.", href: "/case-converter", iconName: "Heading1", category: "Word Tools" },
   { title: "Lorem Ipsum Generator", description: "Generate placeholder lorem ipsum text for your designs and mockups.", href: "/lorem-ipsum-generator", iconName: "AlignLeft", category: "Word Tools" },
+  { title: "Text Wrap Remover", description: "Remove unwanted line breaks and text wrapping. Clean up text from PDFs, emails, and formatted documents.", href: "/text-wrap-remover", iconName: "AlignLeft", category: "Word Tools" },
   { title: "Password Generator", description: "Create secure random passwords with customizable options and strength meter.", href: "/password-generator", iconName: "Lock", category: "Word Tools" },
   { title: "Text to Speech", description: "Convert text to spoken words using browser voices with speed and pitch controls.", href: "/text-to-speech", iconName: "Volume2", category: "Word Tools" },
   { title: "JSON Formatter", description: "Format, validate, and beautify JSON with syntax highlighting.", href: "/json-formatter", iconName: "Code", category: "Developer" },
@@ -388,6 +410,7 @@ const toolsForList = [
   { title: "BMI Calculator", description: "Calculate your Body Mass Index (BMI) and check your health category with visual scale.", href: "/bmi-calculator", iconName: "Cake", category: "Health" },
   { title: "Sleep Calculator", description: "Find optimal sleep and wake times based on 90-minute sleep cycles.", href: "/sleep-calculator", iconName: "Moon", category: "Health" },
   { title: "Percentage Calculator", description: "Calculate percentages: X% of Y, what % X is of Y, and percentage change between values.", href: "/percentage-calculator", iconName: "Calculator", category: "Math" },
+  { title: "Fibonacci Calculator", description: "Calculate Fibonacci numbers, view the full sequence, and explore the golden ratio approximation.", href: "/fibonacci-calculator", iconName: "Hash", category: "Math" },
   { title: "Time Zone Converter", description: "Convert time between any two time zones worldwide. Perfect for scheduling across regions.", href: "/timezone-converter", iconName: "Clock", category: "Utility" },
   { title: "Unit Converter", description: "Convert length, weight, temperature, speed, area, and volume between metric and imperial units.", href: "/unit-converter", iconName: "Ruler", category: "Utility" },
   { title: "Countdown Timer", description: "Count down to any date and time. Perfect for events, deadlines, and reminders.", href: "/countdown-timer", iconName: "Timer", category: "Utility" },
@@ -399,6 +422,7 @@ const toolsForList = [
   { title: "JSON to CSV", description: "Convert JSON arrays to CSV format. Handles nested objects by flattening keys with dot notation.", href: "/json-to-csv", iconName: "Code", category: "Developer" },
   { title: "CSS Gradient Generator", description: "Create beautiful CSS gradients with live preview. Choose colors, direction, and copy CSS code.", href: "/css-gradient-generator", iconName: "Palette", category: "Developer" },
   { title: "Text to Binary", description: "Convert text to binary and vice versa. Includes ASCII reference table for common characters.", href: "/text-to-binary", iconName: "Binary", category: "Developer" },
+  { title: "Markdown Preview", description: "Live markdown editor with instant preview. Write markdown and see rendered HTML in real-time.", href: "/markdown-preview", iconName: "FileText", category: "Developer" },
 ]
 
 const featuredTools = [
@@ -433,7 +457,7 @@ export default function HomePage() {
           <div className="text-center max-w-3xl mx-auto">
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-300 text-sm font-medium mb-5 animate-fade-in">
               <Zap className="w-4 h-4" />
-              40 free tools, no signup required
+              43 free tools, no signup required
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-zinc-900 dark:text-zinc-100 tracking-tight mb-4 animate-fade-in">

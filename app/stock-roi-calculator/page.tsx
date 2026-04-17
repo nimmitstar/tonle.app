@@ -4,6 +4,7 @@ import { useState } from "react"
 import { TrendingUp, TrendingDown, DollarSign, Calendar, Percent } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 export default function StockROICalculatorPage() {
@@ -239,6 +240,7 @@ export default function StockROICalculatorPage() {
               filename: "stock-roi"
             }}
           />
+          <ShareButtons toolName="Stock ROI Calculator" />
         </div>
       )}
     </ToolPageLayout>

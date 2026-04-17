@@ -4,6 +4,7 @@ import { useState } from "react"
 import { TrendingUp, DollarSign, Percent, Calendar, RotateCcw } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 export default function SIPCalculatorPage() {
@@ -255,6 +256,7 @@ export default function SIPCalculatorPage() {
               filename: "sip-calculator"
             }}
           />
+          <ShareButtons toolName="SIP Calculator" />
         </div>
       )}
     </ToolPageLayout>

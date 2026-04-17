@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Percent, Divide, TrendingUp } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 type Mode = "percentageOf" | "whatPercentage" | "percentChange"
@@ -215,6 +216,7 @@ export default function PercentageCalculatorPage() {
                 filename: "percentage-calculator"
               }}
             />
+            <ShareButtons toolName="Percentage Calculator" />
           </div>
         )}
       </div>

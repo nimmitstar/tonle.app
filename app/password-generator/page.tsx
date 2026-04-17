@@ -4,6 +4,7 @@ import { useState, useMemo } from "react"
 import { Lock, Copy, Check, FileText } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 export default function PasswordGeneratorPage() {
@@ -191,6 +192,7 @@ export default function PasswordGeneratorPage() {
             }}
           />
         )}
+        <ShareButtons toolName="Password Generator" />
       </div>
     </ToolPageLayout>
   )

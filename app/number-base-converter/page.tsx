@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Hash, Copy, Check, RotateCcw } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { ExportButtons } from "@/components/export-buttons"
+import { ShareButtons } from "@/components/share-buttons"
 import { formatDate } from "@/lib/export"
 
 type Base = "decimal" | "binary" | "octal" | "hex"
@@ -228,6 +229,7 @@ export default function NumberBaseConverterPage() {
             filename: "number-base-converter"
           }}
         />
+        <ShareButtons toolName="Number Base Converter" />
       </div>
     </ToolPageLayout>
   )
