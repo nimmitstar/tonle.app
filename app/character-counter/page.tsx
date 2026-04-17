@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react"
 import { Type, FileText, Heading1 } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function CharacterCounterPage() {
   const [text, setText] = useState("")
@@ -98,6 +100,21 @@ export default function CharacterCounterPage() {
           </div>
         </div>
       )}
+      <ExportButtons
+        data={{
+          title: "Character Counter",
+          date: formatDate(),
+          headers: ["Metric", "Count"],
+          rows: [
+            ["Total Characters", stats.total.toString()],
+            ["Without Spaces", stats.noSpaces.toString()],
+            ["Letters", stats.letters.toString()],
+            ["Numbers", stats.numbers.toString()],
+            ["Spaces", stats.spaces.toString()]
+          ],
+          filename: "character-counter"
+        }}
+      />
     </ToolPageLayout>
   )
 }

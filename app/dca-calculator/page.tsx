@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Repeat, TrendingUp, Percent, Plus, Trash2, ArrowUpDown } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 interface Purchase {
   id: number
@@ -274,6 +276,20 @@ export default function DCACalculatorPage() {
                   </tbody>
                 </table>
               </div>
+              <ExportButtons
+                data={{
+                  title: "DCA Calculator",
+                  date: formatDate(),
+                  headers: ["Date", "Total Invested", `Total ${assetName || "Tokens"}`, "Avg Price"],
+                  rows: runningTotals.map(row => [
+                    row.date,
+                    `$${row.invested.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`,
+                    row.tokens.toFixed(6),
+                    `$${row.avgPrice.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+                  ]),
+                  filename: "dca-calculator"
+                }}
+              />
             </div>
           )}
         </div>

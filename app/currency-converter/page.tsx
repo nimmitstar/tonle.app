@@ -4,6 +4,8 @@ import { useState, useEffect } from "react"
 import { DollarSign, RefreshCw, TrendingUp } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { AffiliateCard } from "@/components/affiliate-card"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 const currencies = [
   { code: "USD", name: "US Dollar", type: "fiat" },
@@ -233,6 +235,19 @@ export default function CurrencyConverterPage() {
               </p>
             )}
           </div>
+          <ExportButtons
+            data={{
+              title: "Currency Converter",
+              date: formatDate(),
+              headers: ["Currency", "Amount"],
+              rows: [
+                [`${fromInfo?.name ?? from} (${from})`, `${amt.toLocaleString()} ${from}`],
+                [`${toInfo?.name ?? to} (${to})`, `${result?.toLocaleString(undefined, { maximumFractionDigits: 2 })} ${to}`],
+                ["Exchange Rate", `1 ${from} = ${rate?.toFixed(6) ?? "N/A"} ${to}`]
+              ],
+              filename: "currency-converter"
+            }}
+          />
         </div>
       )}
 

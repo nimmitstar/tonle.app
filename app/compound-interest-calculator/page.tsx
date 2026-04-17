@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Percent, Landmark, Repeat } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function CompoundInterestCalculatorPage() {
   const [principal, setPrincipal] = useState("")
@@ -156,6 +158,20 @@ export default function CompoundInterestCalculatorPage() {
                 )
               })}
             </div>
+            <ExportButtons
+              data={{
+                title: "Compound Interest Calculator",
+                date: formatDate(),
+                headers: ["Year", "Balance", "Interest Earned"],
+                rows: Array.from({ length: t }, (_, i) => {
+                  const year = i + 1
+                  const yearAmount = P * Math.pow(1 + r / n, n * year)
+                  const yearInterest = yearAmount - P
+                  return [year.toString(), `$${yearAmount.toFixed(2)}`, `$${yearInterest.toFixed(2)}`]
+                }),
+                filename: "compound-interest"
+              }}
+            />
           </div>
         </>
       )}

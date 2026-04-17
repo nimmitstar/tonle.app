@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { DollarSign, TrendingUp, Calendar } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 // US CPI data (annual average, indexed to 1982-84=100)
 // Source: Bureau of Labor Statistics
@@ -180,6 +182,21 @@ export default function InflationCalculatorPage() {
               Based on annual average CPI data.
             </p>
           </div>
+          <ExportButtons
+            data={{
+              title: "Inflation Calculator",
+              date: formatDate(),
+              headers: ["Metric", "Value"],
+              rows: [
+                ["Original Amount", `$${amt.toFixed(2)}`],
+                ["From Year", start.toString()],
+                ["To Year", end.toString()],
+                ["Adjusted Value", `$${adjustedValue.toFixed(2)}`],
+                ["Inflation Rate", `${inflationRate >= 0 ? "+" : ""}${inflationRate.toFixed(2)}%`]
+              ],
+              filename: "inflation-calculator"
+            }}
+          />
         </div>
       )}
     </ToolPageLayout>

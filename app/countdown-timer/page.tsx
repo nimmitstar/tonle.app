@@ -3,6 +3,8 @@
 import { useState, useEffect, useMemo } from "react"
 import { Calendar, Clock, Play, Pause, RotateCcw } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate as formatExportDate } from "@/lib/export"
 
 export default function CountdownTimerPage() {
   const [targetDate, setTargetDate] = useState("")
@@ -188,7 +190,23 @@ export default function CountdownTimerPage() {
                 </div>
               </div>
             </>
-          )}
+            )}
+            <ExportButtons
+              data={{
+                title: "Countdown Timer",
+                date: formatExportDate(),
+                headers: ["Metric", "Value"],
+                rows: [
+                  ["Target Date", targetDate ?? ""],
+                  ["Target Time", targetTime ?? ""],
+                  ["Days Remaining", (timeLeft?.days ?? 0).toString()],
+                  ["Hours Remaining", (timeLeft?.hours ?? 0).toString()],
+                  ["Minutes Remaining", (timeLeft?.minutes ?? 0).toString()],
+                  ["Seconds Remaining", (timeLeft?.seconds ?? 0).toString()]
+                ],
+                filename: "countdown-timer"
+              }}
+            />
         </div>
       )}
     </ToolPageLayout>

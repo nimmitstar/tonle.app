@@ -3,6 +3,8 @@
 import { useState, useMemo, useEffect } from "react"
 import { Clock, ArrowRight } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 const TIMEZONES = [
   { value: "UTC", label: "UTC (Coordinated Universal Time)" },
@@ -170,6 +172,18 @@ export default function TimezoneConverterPage() {
               </p>
             </div>
           </div>
+          <ExportButtons
+            data={{
+              title: "Time Zone Converter",
+              date: formatDate(),
+              headers: ["Time Zone", "Time"],
+              rows: [
+                [TIMEZONES.find((tz) => tz.value === fromTimezone)?.label ?? fromTimezone, convertedTime?.source ?? ""],
+                [TIMEZONES.find((tz) => tz.value === toTimezone)?.label ?? toTimezone, convertedTime?.target ?? ""]
+              ],
+              filename: "timezone-converter"
+            }}
+          />
         </div>
       )}
     </ToolPageLayout>

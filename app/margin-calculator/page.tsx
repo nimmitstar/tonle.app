@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { DollarSign, Percent, TrendingUp, RotateCcw } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function MarginCalculatorPage() {
   const [revenue, setRevenue] = useState("")
@@ -246,6 +248,21 @@ export default function MarginCalculatorPage() {
               <p className="text-lg font-semibold text-emerald-500">${(sellingPrice - c).toFixed(2)}</p>
             </div>
           </div>
+          <ExportButtons
+            data={{
+              title: "Margin Calculator",
+              date: formatDate(),
+              headers: ["Metric", "Value"],
+              rows: [
+                ["Mode", "From Target Margin"],
+                ["Cost", `$${c.toFixed(2)}`],
+                ["Target Margin", `${marginPercent}%`],
+                ["Selling Price", `$${sellingPrice.toFixed(2)}`],
+                ["Profit", `$${(sellingPrice - c).toFixed(2)}`]
+              ],
+              filename: "margin-calculator"
+            }}
+          />
         </div>
       )}
     </ToolPageLayout>

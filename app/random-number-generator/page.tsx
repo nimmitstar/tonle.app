@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Hash, Sparkles, Copy, Check, RotateCw } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function RandomNumberGeneratorPage() {
   const [min, setMin] = useState("1")
@@ -254,6 +256,15 @@ export default function RandomNumberGeneratorPage() {
               <RotateCw className="w-5 h-5" />
               Generate Again
             </button>
+            <ExportButtons
+              data={{
+                title: "Random Number Generator",
+                date: formatDate(),
+                headers: ["Number", "Value"],
+                rows: results.map((num, i) => [`#${i + 1}`, integerOnly ? num.toString() : num.toFixed(2)]),
+                filename: "random-numbers"
+              }}
+            />
           </div>
         )}
       </div>

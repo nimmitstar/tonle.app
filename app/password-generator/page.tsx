@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react"
 import { Lock, Copy, Check, FileText } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function PasswordGeneratorPage() {
   const [length, setLength] = useState("16")
@@ -171,6 +173,24 @@ export default function PasswordGeneratorPage() {
             </label>
           </div>
         </div>
+        {password && (
+          <ExportButtons
+            data={{
+              title: "Password Generator Settings",
+              date: formatDate(),
+              headers: ["Setting", "Value"],
+              rows: [
+                ["Password Length", length],
+                ["Uppercase (A-Z)", uppercase ? "Yes" : "No"],
+                ["Lowercase (a-z)", lowercase ? "Yes" : "No"],
+                ["Numbers (0-9)", numbers ? "Yes" : "No"],
+                ["Symbols (!@#$)", symbols ? "Yes" : "No"],
+                ["Strength", strength.label]
+              ],
+              filename: "password-generator-settings"
+            }}
+          />
+        )}
       </div>
     </ToolPageLayout>
   )

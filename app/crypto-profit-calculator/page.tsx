@@ -4,6 +4,8 @@ import { useState } from "react"
 import { TrendingUp, ArrowDownRight, ArrowUpRight } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { AffiliateCard } from "@/components/affiliate-card"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function CryptoProfitCalculatorPage() {
   const [buyPrice, setBuyPrice] = useState("")
@@ -117,6 +119,23 @@ export default function CryptoProfitCalculatorPage() {
               </p>
             </div>
           </div>
+          <ExportButtons
+            data={{
+              title: "Crypto Profit Calculator",
+              date: formatDate(),
+              headers: ["Metric", "Value"],
+              rows: [
+                ["Buy Price", `$${buy.toFixed(2)}`],
+                ["Sell Price", `$${sell.toFixed(2)}`],
+                ["Quantity", qty.toString()],
+                ["Invested", `$${invested.toFixed(2)}`],
+                ["Returned", `$${returned.toFixed(2)}`],
+                ["Profit/Loss", `${profit >= 0 ? "+" : ""}$${profit.toFixed(2)}`],
+                ["ROI", `${roi >= 0 ? "+" : ""}${roi.toFixed(2)}%`]
+              ],
+              filename: "crypto-profit"
+            }}
+          />
         </div>
       )}
 

@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Hash, Copy, Check, RotateCcw } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 type Base = "decimal" | "binary" | "octal" | "hex"
 
@@ -212,6 +214,20 @@ export default function NumberBaseConverterPage() {
             </tbody>
           </table>
         </div>
+        <ExportButtons
+          data={{
+            title: "Number Base Converter",
+            date: formatDate(),
+            headers: ["Base", "Value"],
+            rows: [
+              ["Decimal (Base 10)", values.decimal || "-"],
+              ["Binary (Base 2)", values.binary || "-"],
+              ["Octal (Base 8)", values.octal || "-"],
+              ["Hexadecimal (Base 16)", values.hex || "-"]
+            ],
+            filename: "number-base-converter"
+          }}
+        />
       </div>
     </ToolPageLayout>
   )

@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react"
 import { Scale, Ruler, Calendar } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function BMICalculatorPage() {
   const [unit, setUnit] = useState<"metric" | "imperial">("metric")
@@ -148,6 +150,21 @@ export default function BMICalculatorPage() {
               <span>40+</span>
             </div>
           </div>
+          <ExportButtons
+            data={{
+              title: "BMI Calculator",
+              date: formatDate(),
+              headers: ["Metric", "Value"],
+              rows: [
+                ["Unit System", unit === "metric" ? "Metric" : "Imperial"],
+                ["Weight", unit === "metric" ? `${weight} kg` : `${weight} lbs`],
+                ["Height", unit === "metric" ? `${height} cm` : `${height} ft`],
+                ["BMI", bmi.value.toFixed(1)],
+                ["Category", bmi.category]
+              ],
+              filename: "bmi-calculator"
+            }}
+          />
         </div>
       )}
     </ToolPageLayout>

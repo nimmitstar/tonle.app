@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react"
 import { ArrowRightLeft } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 type Category = "length" | "weight" | "temperature" | "speed" | "area" | "volume"
 
@@ -226,6 +228,19 @@ export default function UnitConverterPage() {
               {units.find((u) => u.value === toUnit)?.label}
             </p>
           </div>
+          <ExportButtons
+            data={{
+              title: "Unit Converter",
+              date: formatDate(),
+              headers: ["Conversion", "Value"],
+              rows: [
+                ["Category", CATEGORIES.find((c) => c.key === category)?.label ?? category],
+                ["Input", `${value} ${units.find((u) => u.value === fromUnit)?.label ?? fromUnit}`],
+                ["Result", `${typeof result === "number" ? result.toFixed(6).replace(/\.?0+$/, "") : "0"} ${units.find((u) => u.value === toUnit)?.label ?? toUnit}`]
+              ],
+              filename: "unit-converter"
+            }}
+            />
         </div>
       )}
     </ToolPageLayout>

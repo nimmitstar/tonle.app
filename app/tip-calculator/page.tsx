@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { DollarSign, Users, Percent, Coffee } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 const tipPresets = [15, 18, 20, 25]
 
@@ -164,6 +166,23 @@ export default function TipCalculatorPage() {
               </div>
             </div>
           )}
+          <ExportButtons
+            data={{
+              title: "Tip Calculator",
+              date: formatDate(),
+              headers: ["Metric", "Value"],
+              rows: [
+                ["Bill Amount", `$${bill.toFixed(2)}`],
+                ["Tip Percentage", `${tipPercent}%`],
+                ["Tip Amount", `$${tipAmount.toFixed(2)}`],
+                ["Total Amount", `$${totalAmount.toFixed(2)}`],
+                ["Number of People", people.toString()],
+                ["Tip Per Person", `$${tipPerPerson.toFixed(2)}`],
+                ["Total Per Person", `$${totalPerPerson.toFixed(2)}`]
+              ],
+              filename: "tip-calculator"
+            }}
+          />
         </div>
       )}
     </ToolPageLayout>

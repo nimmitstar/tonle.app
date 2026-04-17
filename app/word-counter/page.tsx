@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { FileText, Type, Heading1 } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function WordCounterPage() {
   const [text, setText] = useState("")
@@ -78,6 +80,22 @@ export default function WordCounterPage() {
           </p>
         </div>
       )}
+      <ExportButtons
+        data={{
+          title: "Word Counter",
+          date: formatDate(),
+          headers: ["Metric", "Count"],
+          rows: [
+            ["Words", words.toString()],
+            ["Characters", characters.toString()],
+            ["Characters (no spaces)", charactersNoSpaces.toString()],
+            ["Sentences", sentences.toString()],
+            ["Paragraphs", paragraphs.toString()],
+            ["Reading Time", `${readingTime} minute${readingTime !== 1 ? "s" : ""}`]
+          ],
+          filename: "word-counter"
+        }}
+      />
     </ToolPageLayout>
   )
 }

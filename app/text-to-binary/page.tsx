@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Binary, ArrowRight, ArrowLeft, Copy, Check, RotateCcw, BookOpen } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 function textToBinary(text: string): string {
   return text
@@ -288,6 +290,25 @@ export default function TextToBinaryPage() {
             </p>
           </div>
         </details>
+        {(binaryOutput || textOutput) && (
+          <ExportButtons
+            data={{
+              title: "Text to Binary Converter",
+              date: formatDate(),
+              headers: ["Conversion", "Result"],
+              rows: mode === "text-to-binary" ? [
+                ["Mode", "Text to Binary"],
+                ["Input Length", textInput.length.toString()],
+                ["Binary Output Length", binaryOutput.length.toString()]
+              ] : [
+                ["Mode", "Binary to Text"],
+                ["Binary Input Length", binaryInput.length.toString()],
+                ["Text Output", textOutput]
+              ],
+              filename: "text-to-binary"
+            }}
+          />
+        )}
       </div>
     </ToolPageLayout>
   )

@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Percent, DollarSign, Plus, Trash2 } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 interface Discount {
   id: string
@@ -219,6 +221,23 @@ export default function DiscountCalculatorPage() {
               </span>
             </div>
           )}
+          <ExportButtons
+            data={{
+              title: "Discount Calculator",
+              date: formatDate(),
+              headers: ["Step", "Description"],
+              rows: [
+                ["Original Price", `$${price.toFixed(2)}`],
+                ...discountDetails.flatMap((detail, index) => [
+                  [`Discount ${index + 1} (${detail.percent}%)`, `-$${detail.amount.toFixed(2)}`],
+                  [`Price After Discount ${index + 1}`, `$${detail.priceAfter.toFixed(2)}`]
+                ] as (string | number)[][]),
+                ["Total Savings", `$${totalSavings.toFixed(2)}`],
+                ["Final Price", `$${finalPrice.toFixed(2)}`]
+              ],
+              filename: "discount-calculator"
+            }}
+          />
         </div>
       )}
     </ToolPageLayout>

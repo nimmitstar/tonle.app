@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react"
 import { Clock, Moon, Sunrise, BedDouble } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate as formatExportDate } from "@/lib/export"
 
 // 90 minutes per sleep cycle
 const CYCLE_MINUTES = 90
@@ -240,6 +242,19 @@ export default function SleepCalculatorPage() {
               : "Times shown account for ~14 minutes to fall asleep. These are ideal wake times to feel refreshed."}
           </p>
         </div>
+        <ExportButtons
+          data={{
+            title: "Sleep Calculator",
+            date: formatExportDate(),
+            headers: ["Cycles", "Sleep Duration", mode === "wakeAt" ? "Bed Time" : "Wake Time"],
+            rows: sleepTimes.map(item => [
+              `${item.cycles} cycles`,
+              item.sleepDuration,
+              formatTime(item.time)
+            ]),
+            filename: "sleep-calculator"
+          }}
+        />
       </div>
     </ToolPageLayout>
   )

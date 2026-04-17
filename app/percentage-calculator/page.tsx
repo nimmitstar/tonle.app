@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { Percent, Divide, TrendingUp } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 type Mode = "percentageOf" | "whatPercentage" | "percentChange"
 
@@ -197,6 +199,22 @@ export default function PercentageCalculatorPage() {
                 </p>
               </div>
             )}
+            <ExportButtons
+              data={{
+                title: "Percentage Calculator",
+                date: formatDate(),
+                headers: ["Calculation", "Result"],
+                rows: [
+                  ["Mode", "% Change"],
+                  ...(results.percentChange !== null ? [
+                    ["From Value", percentChange.from],
+                    ["To Value", percentChange.to],
+                    ["Result", `${results.percentChange >= 0 ? "+" : ""}${results.percentChange.toFixed(2)}%`]
+                  ] : [])
+                ],
+                filename: "percentage-calculator"
+              }}
+            />
           </div>
         )}
       </div>

@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { TrendingUp, DollarSign, Percent, Calendar, RotateCcw } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function SIPCalculatorPage() {
   const [monthlyInvestment, setMonthlyInvestment] = useState("")
@@ -230,6 +232,29 @@ export default function SIPCalculatorPage() {
               })}
             </div>
           </div>
+          <ExportButtons
+            data={{
+              title: "SIP Calculator",
+              date: formatDate(),
+              headers: ["Year", "Invested", "Returns", "Total Value"],
+              rows: Array.from({ length: Math.min(duration, 30) }, (_, i) => {
+                const year = i + 1
+                const months = year * 12
+                const yearInvested = monthly * months
+                const yearValue = monthlyRate > 0
+                  ? monthly * ((Math.pow(1 + monthlyRate, months) - 1) / monthlyRate) * (1 + monthlyRate)
+                  : yearInvested
+                const yearReturns = yearValue - yearInvested
+                return [
+                  year.toString(),
+                  `$${yearInvested.toLocaleString("en-US", { maximumFractionDigits: 0 })}`,
+                  `$${yearReturns.toLocaleString("en-US", { maximumFractionDigits: 0 })}`,
+                  `$${yearValue.toLocaleString("en-US", { maximumFractionDigits: 0 })}`
+                ]
+              }),
+              filename: "sip-calculator"
+            }}
+          />
         </div>
       )}
     </ToolPageLayout>

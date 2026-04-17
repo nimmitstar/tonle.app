@@ -4,6 +4,8 @@ import { useState } from "react"
 import { Landmark, Percent } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
 import { AffiliateCard } from "@/components/affiliate-card"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function LoanCalculatorPage() {
   const [principal, setPrincipal] = useState("")
@@ -164,6 +166,21 @@ export default function LoanCalculatorPage() {
                 </tbody>
               </table>
             </div>
+            <ExportButtons
+              data={{
+                title: "Loan Calculator",
+                date: formatDate(),
+                headers: ["Month", "Payment", "Principal", "Interest", "Balance"],
+                rows: schedule.map(row => [
+                  row.month,
+                  `$${row.payment.toFixed(2)}`,
+                  `$${row.principal.toFixed(2)}`,
+                  `$${row.interest.toFixed(2)}`,
+                  `$${row.balance.toFixed(2)}`
+                ]),
+                filename: "loan-calculator"
+              }}
+            />
           </div>
         </>
       )}

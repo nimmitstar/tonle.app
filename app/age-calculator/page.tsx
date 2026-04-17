@@ -3,6 +3,8 @@
 import { useState, useMemo } from "react"
 import { Calendar, Cake } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function AgeCalculatorPage() {
   const [birthDate, setBirthDate] = useState("")
@@ -112,6 +114,20 @@ export default function AgeCalculatorPage() {
               </div>
             </div>
           </div>
+          <ExportButtons
+            data={{
+              title: "Age Calculator",
+              date: formatDate(),
+              headers: ["Metric", "Value"],
+              rows: [
+                ["Birth Date", birthDate],
+                ["Age", `${age.years} years, ${age.months} months, ${age.days} days`],
+                ["Total Days", age.totalDays.toLocaleString()],
+                ["Next Birthday", `${age.daysUntilBirthday} days (${age.nextBirthday.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })})`]
+              ],
+              filename: "age-calculator"
+            }}
+          />
         </div>
       )}
     </ToolPageLayout>

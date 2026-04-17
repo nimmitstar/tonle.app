@@ -3,6 +3,8 @@
 import { useState } from "react"
 import { TrendingUp, TrendingDown, DollarSign, Calendar, Percent } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function StockROICalculatorPage() {
   const [buyPrice, setBuyPrice] = useState("")
@@ -215,6 +217,28 @@ export default function StockROICalculatorPage() {
               </div>
             </>
           )}
+          <ExportButtons
+            data={{
+              title: "Stock ROI Calculator",
+              date: formatDate(),
+              headers: ["Metric", "Value"],
+              rows: [
+                ["Buy Price", `$${buy.toFixed(2)}`],
+                ["Sell Price", `$${sell.toFixed(2)}`],
+                ["Shares", numShares.toString()],
+                ["Invested", `$${invested.toFixed(2)}`],
+                ["Returned", `$${returned.toFixed(2)}`],
+                ["Profit/Loss", `${profit >= 0 ? "+" : ""}$${profit.toFixed(2)}`],
+                ["Total Return", `${totalReturn >= 0 ? "+" : ""}${totalReturn.toFixed(2)}%`],
+                ...(years > 0 ? [
+                  ["Holding Period", `${years.toFixed(2)} years`],
+                  ["Annualized ROI", `${annualizedROI >= 0 ? "+" : ""}${annualizedROI.toFixed(2)}%`],
+                  ["CAGR", `${cagr >= 0 ? "+" : ""}${cagr.toFixed(2)}%`]
+                ] as (string | number)[][] : [])
+              ],
+              filename: "stock-roi"
+            }}
+          />
         </div>
       )}
     </ToolPageLayout>

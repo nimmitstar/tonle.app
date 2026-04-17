@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react"
 import { Palette, Copy, Check, QrCode } from "lucide-react"
 import { ToolPageLayout } from "@/components/tool-page-layout"
+import { ExportButtons } from "@/components/export-buttons"
+import { formatDate } from "@/lib/export"
 
 export default function ColorConverterPage() {
   const [hex, setHex] = useState("#0EA5E9")
@@ -263,6 +265,19 @@ export default function ColorConverterPage() {
           </button>
         </div>
       </div>
+      <ExportButtons
+        data={{
+          title: "Color Converter",
+          date: formatDate(),
+          headers: ["Format", "Value"],
+          rows: [
+            ["HEX", hex],
+            ["RGB", `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})`],
+            ["HSL", `hsl(${hsl.h}, ${hsl.s}%, ${hsl.l}%)`]
+          ],
+          filename: "color-converter"
+        }}
+      />
     </ToolPageLayout>
   )
 }
