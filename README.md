@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tonle — Free Online Tools
 
-## Getting Started
+**Live:** [tonle.app](https://tonle.app)
 
-First, run the development server:
+15 free online tools for finance, crypto, word processing, and developer utilities. Fast, private, no signup required.
+
+Built with Next.js 16, TypeScript, and Tailwind CSS. Deployed on Vercel.
+
+## Tools
+
+### 💰 Finance & Crypto
+
+| Tool | URL | Description |
+|------|-----|-------------|
+| Crypto Profit Calculator | `/crypto-profit-calculator` | Calculate crypto profit/loss and ROI |
+| DCA Calculator | `/dca-calculator` | Dollar-cost averaging investment returns |
+| Loan Calculator | `/loan-calculator` | Monthly payments, total interest, amortization |
+| Compound Interest | `/compound-interest-calculator` | Final amount with compound growth |
+| Currency Converter | `/currency-converter` | Real-time currency conversion |
+
+### 📝 Word Tools
+
+| Tool | URL | Description |
+|------|-----|-------------|
+| Word Counter | `/word-counter` | Word count, character count, reading time |
+| Character Counter | `/character-counter` | Character count with/without spaces |
+| Case Converter | `/case-converter` | Uppercase, lowercase, title case, sentence case |
+| Lorem Ipsum Generator | `/lorem-ipsum-generator` | Generate placeholder text |
+| Password Generator | `/password-generator` | Secure passwords with strength meter |
+
+### 🔧 Developer Tools
+
+| Tool | URL | Description |
+|------|-----|-------------|
+| JSON Formatter | `/json-formatter` | Format and validate JSON |
+| Base64 Encoder | `/base64-encoder` | Encode and decode Base64 |
+| URL Encoder | `/url-encoder` | Encode and decode URLs |
+| Color Converter | `/color-converter` | HEX, RGB, HSL conversion with preview |
+| QR Code Generator | `/qr-code-generator` | Generate QR codes from text or URLs |
+
+## Tech Stack
+
+- **Framework:** Next.js 16 (App Router)
+- **Language:** TypeScript (strict mode)
+- **Styling:** Tailwind CSS 4
+- **Icons:** Lucide React
+- **Deployment:** Vercel
+- **Package Manager:** Bun
+
+## Development
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
+# Install dependencies
+bun install
+
+# Run development server
 bun dev
+
+# Build for production
+bun run build
+
+# Start production server
+bun start
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+tonle.app/
+├── app/                          # Next.js App Router pages
+│   ├── page.tsx                  # Homepage
+│   ├── layout.tsx                # Root layout
+│   ├── globals.css               # Global styles
+│   ├── crypto-profit-calculator/
+│   ├── dca-calculator/
+│   ├── loan-calculator/
+│   ├── compound-interest-calculator/
+│   ├── currency-converter/
+│   ├── word-counter/
+│   ├── character-counter/
+│   ├── case-converter/
+│   ├── lorem-ipsum-generator/
+│   ├── password-generator/
+│   ├── json-formatter/
+│   ├── base64-encoder/
+│   ├── url-encoder/
+│   ├── color-converter/
+│   └── qr-code-generator/
+├── components/
+│   ├── header.tsx                # Navigation + dark mode toggle
+│   ├── footer.tsx                # Site footer
+│   ├── theme-provider.tsx        # Dark/light mode context
+│   ├── tool-card.tsx             # Tool card for homepage grid
+│   └── adsense.tsx               # AdSense placeholder components
+├── public/                       # Static assets
+├── package.json
+├── tsconfig.json
+└── next.config.ts
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## SEO
 
-## Learn More
+Every tool page includes:
+- Unique `<title>` and `<meta description>`
+- Open Graph tags for social sharing
+- H1 with primary keyword
+- Internal linking to related tools
 
-To learn more about Next.js, take a look at the following resources:
+## AdSense Setup
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Apply for Google AdSense at [adsense.google.com](https://adsense.google.com)
+2. Once approved, uncomment the AdSense components in `components/adsense.tsx`
+3. Replace `YOUR_ADSENSE_CLIENT_ID` with your publisher ID
+4. Redeploy
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Required pages for AdSense approval:
+- Privacy Policy
+- About
+- Contact
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
