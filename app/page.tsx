@@ -1,6 +1,7 @@
 import { ToolCard } from "@/components/tool-card"
 import { ToolList } from "@/components/tool-list"
 import { BetweenToolsAd } from "@/components/adsense"
+import { StickyFooterAd } from "@/components/sticky-footer-ad"
 import Link from "next/link"
 
 const websiteJsonLd = {
@@ -590,6 +591,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+      <StickyFooterAd />
     </div>
   )
 }

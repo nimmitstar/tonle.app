@@ -2,6 +2,7 @@ import { ReactNode } from "react"
 import Link from "next/link"
 import { ChevronRight, Home } from "lucide-react"
 import { HeaderAd, InContentAd } from "./adsense"
+import { StickyFooterAd } from "./sticky-footer-ad"
 import { ToolCard } from "./tool-card"
 
 interface ToolPageLayoutProps {
@@ -105,6 +106,7 @@ export function ToolPageLayout({
           </div>
         )}
       </main>
+      <StickyFooterAd />
     </div>
   )
 }
